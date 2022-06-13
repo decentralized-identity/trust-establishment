@@ -113,21 +113,16 @@ The following properties are for use at the top-level of a
 [[ref:Presentation Definition]]. Any properties that are not defined below MUST
 be ignored, unless otherwise specified by a [[ref:Feature]];
 
-- `id` - The [[ref:Presentation Definition]] ****MUST**** contain an `id`
+- `id` - The [[ref:Trust List]] ****MUST**** contain an `id`
   property. The value of this property ****MUST**** be a string. The string
   ****SHOULD**** provide a unique ID for the desired context. For example, a
   [UUID](https://tools.ietf.org/html/rfc4122) such as `32f54163-7166-48f1-93d8-f
   f217bdb0653` could provide an ID that is unique in a global context, while a
-  simple string such as `my_presentation_definition_1` could be suitably unique
+  simple string such as `my_trust_list-1` could be suitably unique
   in a local context.
-- `input_descriptors` - The [[ref:Presentation Definition]]  ****MUST****
-  contain an `input_descriptors` property. Its value ****MUST**** be an array of
-  [[ref:Input Descriptor Objects]], the composition of which are described in
-  the [`Input Descriptors`](#input-descriptors) section below.
-
-  All inputs listed in the `input_descriptors` array are required for submission,
-  unless otherwise specified by a [[ref:Feature]].
-
+- `authors` - The [[ref:Trust List]]  ****MUST****
+  contain an `authors` property. Its value ****MUST**** be an array of
+  author objects.
 - `name` - The [[ref:Presentation Definition]] ****MAY**** contain a `name`
   property. If present, its value ****SHOULD**** be a human-friendly string
   intended to constitute a distinctive designation of the
@@ -139,9 +134,15 @@ be ignored, unless otherwise specified by a [[ref:Feature]];
 {
     "trust_list": {
         "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
-        "author": "did:test:abcd",
         "created": "2010-01-01T19:23:24Z",
         "version": "3",
+        "authors": [
+          {
+            "id": "did:test:abcd",
+            "name": "Issuer ABCD",
+            "description": "https://abcd.website"
+          }
+        ],
         "trusted_for": [
           {
             "name": "Person's Name",
@@ -167,7 +168,7 @@ be ignored, unless otherwise specified by a [[ref:Feature]];
             },
         ]
     },
-    "endorsements": [
+    "endorsement_by": [
         {
             "endorser": "did:abcd:1234",
             "endorsedOn": "2012-01-01T19:23:24Z",
