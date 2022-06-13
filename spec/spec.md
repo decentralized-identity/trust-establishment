@@ -103,30 +103,42 @@ Examples in this document use the [Verifiable Credentials Data Model](https://ww
 whether to interact with a [[ref:Holder]], given the [[ref:Claims]] they [[ref:Present]]. [[ref:Trust Lists]] are
 composed of `trusted_entities`, which describe [[ref:Parties]] that they accept for specific [[ref:Claims]] based on [[ref:Schemas]].
 
-::: example Trust List - Minimal Example
+::: example Trust List - Example
 ```json
 ```
 :::
 
-
 The following properties are for use at the top-level of a
-[[ref:Presentation Definition]]. Any properties that are not defined below MUST
-be ignored, unless otherwise specified by a [[ref:Feature]];
+[[ref:Trust List]]. Any properties that are not defined below MUST
+be ignored.
 
-- `id` - The [[ref:Trust List]] ****MUST**** contain an `id`
+- `id` - The object ****MUST**** contain an `id`
   property. The value of this property ****MUST**** be a string. The string
   ****SHOULD**** provide a unique ID for the desired context. For example, a
   [UUID](https://tools.ietf.org/html/rfc4122) such as `32f54163-7166-48f1-93d8-f
   f217bdb0653` could provide an ID that is unique in a global context, while a
   simple string such as `my_trust_list-1` could be suitably unique
   in a local context.
-- `authors` - The [[ref:Trust List]]  ****MUST****
+- `created` - The object ****MUST**** contain a `created` property proving a date-time
+  value for when the object was created. The value of this property ****MUST**** be a
+  [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) compliant timestamp value.
+- `version` - The object ****MUST**** contain a `version` property. The value of this
+  property ****MUST**** be a number. It is recommended that the value is a monotonic
+  increasing integer value.
+- `authors` - The object ****MUST****
   contain an `authors` property. Its value ****MUST**** be an array of
   author objects.
-- `name` - The [[ref:Presentation Definition]] ****MAY**** contain a `name`
-  property. If present, its value ****SHOULD**** be a human-friendly string
-  intended to constitute a distinctive designation of the
-  [[ref:Presentation Definition]].
+    - The `authors` object ****MUST**** contain an `id` property. The value of this
+    property ****MUST**** be a string value representing the [[ref:DID]] of the author.
+    - The `authors` object ****MAY**** contain a `name` property. The value of this
+    property is expected to be a human-readable name for the author.
+    - The `authors` object ****MAY**** contain a `description` property. The value of this
+    property is expected to be a human-readable description of the author.
+    - The `authors` object ****MAY**** contain a `trust_reference` property. The value of this
+    property is expected to be a method by which the list author has established trust in their [[ref:DID]].
+- `trusted_for` TODO
+- `trusted_entities` TODO
+- `endorsements` TODO
 
 **Example JSON Object**
 
@@ -135,12 +147,14 @@ be ignored, unless otherwise specified by a [[ref:Feature]];
     "trust_list": {
         "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
         "created": "2010-01-01T19:23:24Z",
-        "version": "3",
+        "version": 3,
+        "description": "Trust List for Name and Date of Birth claims",
         "authors": [
           {
             "id": "did:test:abcd",
             "name": "Issuer ABCD",
-            "description": "https://abcd.website"
+            "description": "Corp ABCD who has a website at https://abcd.website",
+            "trust_reference": "https://abcd.website/.well-known/did-configuration.json"
           }
         ],
         "trusted_for": [
@@ -168,7 +182,7 @@ be ignored, unless otherwise specified by a [[ref:Feature]];
             },
         ]
     },
-    "endorsement_by": [
+    "endorsements": [
         {
             "endorser": "did:abcd:1234",
             "endorsedOn": "2012-01-01T19:23:24Z",
