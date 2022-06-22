@@ -26,8 +26,9 @@ Trust Establishment 0.0.1
 
 Trust in the decentralized identity space is a problem that many have tried to solve. This specification aims to take a piece of the problem around [[ref:Trust Establishment]]: communicating trust between [[ref:parties]]. Decentralized [[ref:Trust Establishment]] is the means by which [[ref:parties]] answer two key questions about one another:
 
-1. Is one who one claims to be?
-2. Is one to be trusted for what one claims to be trusted for?
+__1. Is one who they claim to be?__
+
+__2. Is one to be trusted for what they claim to be trusted for?__
 
 To address these needs, this specification codifies a
 [[ref:Trust List]] data format that can be used to
@@ -55,6 +56,9 @@ and other mediums (e.g., [DIF Slack](https://difdn.slack.com/archives/C4X50SNUX)
 [[def:Claim, Claims]]
 ~ An assertion made about a [[ref:Subject]]. Used as an umbrella term for
 Credential, Assertion, Attestation, etc.
+
+[[def: Verifiable Credential, VC, VCs]]
+~ Refers to the [W3C specification](https://www.w3.org/TR/vc-data-model) of the Verifiable Credentials Data Model.
 
 [[def:Trust Establishment]]
 ~ The process by which one [[ref:Party]] accepts as necessary to begin [[ref:Verifiable Interactions]] with another [[ref:Party]]   
@@ -90,6 +94,10 @@ an interaction.
 
 [[def:Schema, Schemas]]
 ~ A schema is a vocabulary for a [[ref:Claim]]. Commonly used schema formats include [[ref:JSON Schema]] or [[ref:JSON Linked Data]] as surfaced through [schema.org](https://schema.org/).
+
+[[def:Credential Type, Credential Types]]
+~ A [[ref:Verifiable Credential]] always has a [_type_ property](https://www.w3.org/TR/vc-data-model/#types) referencing one or more URIs
+which provide information semantic meaning and classification for the data in a credential.
 
 ## Structure of this Document
 This document has two primary sections: In the first, there is a model for defining the set of information a [[ref:Verifier]] would like to have in case of [[ref:Trust Establishment]], and in the second, there are suggested models to facilitate [[ref:Trust Establishment]] and utilization of [[ref:Trust Lists]] in practice.
@@ -127,7 +135,7 @@ be ignored.
   increasing integer value.
 - `authors` - The object ****MUST****
   contain an `authors` property. Its value ****MUST**** be an array of
-  author objects.
+  author objects, accurately identifying those responsible for creating the trust list.
     - The `authors` object ****MUST**** contain an `id` property. The value of this
     property ****MUST**** be a string value representing the [[ref:DID]] of the author.
     - The `authors` object ****MAY**** contain a `name` property. The value of this
@@ -136,9 +144,23 @@ be ignored.
     property is expected to be a human-readable description of the author.
     - The `authors` object ****MAY**** contain a `trust_reference` property. The value of this
     property is expected to be a method by which the list author has established trust in their [[ref:DID]].
-- `trusted_for` TODO
+- `trusted_for` – The object ****MUST**** contain a `trusted_for` property. The object
+  contains information denoting which [[ref:Schemas]] and [[ref:Credential Types]] a specific
+  [[ref:Issuer]] is to be trusted for issuing against.
+    - The `trusted_for` object ****MAY**** contain a `name` property, and if present its value ****MUST**** 
+    be a human-friendly string that identifies the `trusted_for` element.
+    - The `trusted_for` object ****MAY**** contain a `description` property, and if present its value ****MUST**** 
+    be a string that describes what the schema is in greater detail.
+    - The `trusted_for` object ****MUST**** contain a `schemas`, and its value ****MUST**** be
+    an array of string URI values to [[ref:Schema]] or [[ref:Credential Type]] resources.
 - `trusted_entities` TODO
+  - `identifiers`
+  - `name`
+  - `description`
 - `endorsements` TODO
+  - `endorser`
+  - `endorsed`
+  - `proof`
 
 **Example JSON Object**
 
