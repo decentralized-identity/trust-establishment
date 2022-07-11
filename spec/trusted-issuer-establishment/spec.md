@@ -58,7 +58,7 @@ Credential, Assertion, Attestation, etc.
 ~ A document used to communicate the who [[ref:Parties]] views as trusted for specific [[ref:Claims]].
 
 [[def:Endorsement, Endorse, Endorsements]]
-~ An object representing a digital signature over a Trust List that communicates approval and support of a Trust List's content.
+~ An object representing a digital signature over a Trusted Issuer Document that communicates approval and support of a Trusted Issuer Document's content.
 
 [[def:Identified Parties, Party, Parties]] 
 ~ Entities that establish their identity by means of a [[def:Decentralized Identifier]]. Parties are commonly referred to as [[ref:Issuers]], [[ref:Holders]], and [[ref:Verifiers]].
@@ -67,10 +67,10 @@ Credential, Assertion, Attestation, etc.
 ~ Entities that are responsible for hosting and communicating [[ref: TIE Documents]].
 
 [[def:Issuer, Issuers]]
-~ Issuers are entities that issue [[ref:Claims]] to [[ref:Holders]], and may be represented as an [[ref:Identified Party]] inside of a [[ref:Trust List]].
+~ Issuers are entities that issue [[ref:Claims]] to [[ref:Holders]], and may be represented as an [[ref:Identified Party]] inside of a [[ref:TIE Document]].
 
 [[def:Holder, Holders]]
-~ Holders are entities that submit [[ref:Claims]] to [[ref:Verifiers]] which contain [[ref:Parties]] that may be identified in a [[ref:Trust List]] to satisfy a [[ref:Presentation]] interaction.
+~ Holders are entities that submit [[ref:Claims]] to [[ref:Verifiers]] which contain [[ref:Parties]] that may be identified in a [[ref:TIE Document]] to satisfy a [[ref:Presentation]] interaction.
 
 [[def:Verifier, Verifiers]]
 ~ Verifiers are entities that define what [[Parties]] they accept a
@@ -144,9 +144,9 @@ A [[ref:TIE Document]] can exist on its own, or with [Endorsements](#endorsement
 
 ### General Composition
 
-The following properties are for use at the top-level of a [[ref:Trust List]]. Any properties that are not defined below ****MUST**** be ignored.
+The following properties are for use at the top-level of a [[ref:TIE Document]]. Any properties that are not defined below ****MUST**** be ignored.
 
-- `id` - The object ****MUST**** contain an `id` property. The value of this property ****MUST**** be a string. The string ****SHOULD**** provide a unique ID for the desired context. For example, a [UUID](https://tools.ietf.org/html/rfc4122) such as `32f54163-7166-48f1-93d8-ff217bdb0653` could provide an ID that is unique in a global context, while a simple string such as `my_trust_list-1` could be suitably unique in a local context.
+- `id` - The object ****MUST**** contain an `id` property. The value of this property ****MUST**** be a string. The string ****SHOULD**** provide a unique ID for the desired context. For example, a [UUID](https://tools.ietf.org/html/rfc4122) such as `32f54163-7166-48f1-93d8-ff217bdb0653` could provide an ID that is unique in a global context, while a simple string such as `my_tie_document-1` could be suitably unique in a local context.
 - `created` - The object ****MUST**** contain a `created` property proving a date-time value for when the object was created. The value of this property ****MUST**** be a [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) compliant timestamp value.
 - `version` - The object ****MUST**** contain a `version` property. The value of this property ****MUST**** be a number. It is recommended that the value is a monotonic increasing integer value.
 - `author` - The ****MUST**** contain an `id` property. The value of this property ****MUST**** be a string value representing the [[ref:DID]] of the author.
