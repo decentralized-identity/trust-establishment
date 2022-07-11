@@ -10,6 +10,7 @@ Trust in the decentralized space is a wide problem that many have tried to solve
 1. _Are you who you claim to be?_
 2. _Are you to be trusted for what you claim to be trusted for?_
 
+Thus far, we've come up with [two specs](./spec) to address these questions. It's likely there are more to come.
 
 # Resources
 

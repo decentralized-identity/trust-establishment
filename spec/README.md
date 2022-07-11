@@ -1,8 +1,10 @@
 # Specs
 
-# Trust List
+## Sentiment Declaration
 
-## Prior art
+[identity.foundation/trust-establishment/sentiment-declaration](https://identity.foundation/trust-establishment/sentiment-declaration)
 
-- [DID Trust Establishment](https://hackmd.io/Xn4FAapEThu1fycJ9bY9OA)
-	- by Daniel Buchner and Sam Curren in July 2019
+
+## Trusted Issuer Establishment
+
+[identity.foundation/trust-establishment/trusted-issuer-establishment](https://identity.foundation/trust-establishment/trusted-issuer-establishment)
