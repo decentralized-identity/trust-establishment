@@ -24,7 +24,7 @@ Trust Establishment 0.0.1
 
 ## Abstract
 
-Trust in the decentralized identity space is a problem that many have tried to solve. This specification aims to take a piece of the problem around [[ref:Trust Establishment]]: a means by which an [[ref:Entity]] communicates their sentiment for a [[ref:Topic]] about a set of [[ref:Parties]]. [[ref:Trust Establishment]] is intended to be informational, though it can be used to prescribe resulting action. Not all potential usages will be covered in this specification.
+Trust in the decentralized identity space is a problem that many have tried to solve. This specification aims to take a piece of the problem around [[ref:Trust Establishment]]: a means by which an [[ref:Party]] communicates their assertions for a [[ref:Topic]] about a set of [[ref:Parties]]. [[ref:Trust Establishment]] is intended to be informational, though it can be used to prescribe resulting action. Not all potential usages will be covered in this specification.
 
 ## Status of This Document
 
@@ -44,8 +44,8 @@ Credential, Assertion, Attestation, etc.
 [[def:Topic, Trust Topic]]
 ~ A [[ref:Schema]]-driven document that gives purpose to a sentiment document. A topic can be anything: from the tangibly measurable (e.g. success rate of a bussiness prossess) to the intangible (e.g. how one party feels about another).
 
-[[def:Trust Establishment, Trust Establishment Document, Trust Establishment Document]]
-~ The process by which a[[ref:Party]] makes trust statements about a given [[ref:Party]] for a given [[ref:Topic]] using Trust Establishment Documents.
+[[def:Trust Establishment, Trust Establishment Document, Trust Establishment Documents]]
+~ The process by which a [[ref:Party]] makes trust statements about a given [[ref:Party]] for a given [[ref:Topic]] using Trust Establishment Documents.
 
 [[def:Identified Parties, Party, Parties]] 
 ~ Entities that establish their identity by means of a [[def:Decentralized Identifier]]. Parties are commonly referred to as [[ref:Issuers]], [[ref:Holders]], and [[ref:Verifiers]].
@@ -54,13 +54,13 @@ Credential, Assertion, Attestation, etc.
 ~ Entities that are responsible for hosting and communicating [[ref:Trust Establishment Documents]].
 
 [[def:Issuer, Issuers]]
-~ Issuers are entities that issue [[ref:Claims]] to [[ref:Holders]], and may be represented as an [[ref:Identified Party]] inside of a [[ref:Sentiment Declaration]].
+~ Issuers are entities that issue [[ref:Claims]] to [[ref:Holders]], and may be represented as an [[ref:Identified Party]] inside of a [[ref:Trust Establishment Document]].
 
 [[def:Holder, Holders]]
-~ Holders are entities that submit [[ref:Claims]] to [[ref:Verifiers]] which contain [[ref:Parties]] that may be identified in a [[ref:Sentiment Declaration]] to satisfy a [[ref:Presentation]] interaction.
+~ Holders are entities that submit [[ref:Claims]] to [[ref:Verifiers]] which contain [[ref:Parties]] that may be identified in a [[ref:Trust Establishment Document]] to satisfy a [[ref:Presentation]] interaction.
 
 [[def:Verifier, Verifiers]]
-~ Verifiers are entities that define what [[Parties]] they accept a
+~ Verifiers are entities that define what [[ref:Parties]] they accept a
 [[ref:Credential]] from in order to proceed with an
 an interaction.
 
@@ -71,7 +71,7 @@ an interaction.
 ~ A [W3C specification](https://www.w3.org/TR/did-core/) describing an _identifier that enables verifiable, decentralized digital identity_.
 
 [[def:Verifiable Interaction, Verifiable Interactions]]
-~ An interaction (e.g. request a claim, present a claim, establish trust) which happens between [[ref:Parties]] using [[ref:Decentralized Identifiers]].
+~ An interaction (e.g. request a claim, present a claim, establish trust) which happens between [[ref:Parties]] using Decentralized Identifiers via [[spec:DID-CORE]].
 
 [[def:Schema, Schemas]]
 ~ A schema is a vocabulary for a [[ref:Claim]]. Commonly used schema formats include [[ref:JSON Schema]] or [[ref:JSON Linked Data]] as surfaced through [schema.org](https://schema.org/).
@@ -83,11 +83,11 @@ which provide information semantic meaning and classification for the data in a 
 ## Structure of this Document
 This document has two primary sections: In the first we describe the data models for [[ref:Topics]] and [[ref:Trust Establishment Documents]]. In the second, we cover some usages of [[ref: Trust Establishment Documents]].t
 
-Examples in this document use the [Verifiable Credentials Data Model](https://www.w3.org/TR/vc-data-model/) and the [Decentralized  Identifiers (DIDs)](https://www.w3.org/TR/did-core/) formats for illustrative purposes only; this specification is intended to support any JSON-serializable [[ref:Claim]] format.
+Examples in this document use the Verifiable Credentials Data Model [[spec:VC-DATA-MODEL]] and the [[spec:DID-CORE]] formats for illustrative purposes only; this specification is intended to support any JSON-serializable [[ref:Claim]] format.
 
 ## Data Model
 
-[[ref:Trust Establishment Documents]] are objects that articulate information a [[ref:Party]] publishes in order to share _assertions_ about a set of [[ref:DID]]-identified entities. [[ref:Issuers]], [[ref:Verifiers]], and [[ref:Holders]] may find utility in understanding a [[ref:Party]]'s assertions in making decisions in decentralized web interactions, some of which are covered in the [Usages](###usages) section.
+[[ref:Trust Establishment Documents]] are objects that articulate information a [[ref:Party]] publishes in order to share _assertions_ about a set of [[ref:DID]]-identified entities. [[ref:Issuers]], [[ref:Verifiers]], and [[ref:Holders]] may find utility in understanding a [[ref:Party]]'s assertions in making decisions in decentralized web interactions, some of which are covered in the [Usages](#usages) section.
 
 **Trust Topic Example**
 
@@ -219,13 +219,33 @@ how is the integrity of sentiment declarations maintained?
 }
 ```
 
+### Document Integrity
+
+[[ref:Trust Establishment Documents] may fit into any number of embed targets – verifiable wrappers or embedded proofing formats - to enable data integrity. This specification takes no position on which means are suitable to provide integrity of [[ref:Trust Establishment Documents]] or [[ref:Topics]], however provide a number of examples for convenience:
+
+#### Verifiable Credential
+
+::: example Linnked Data Proof Verifiable Credential
+TODO: example of a Trust Establishment Document in a VC
+:::
+
+::: example JWT Verifiable Credential
+TODO: example of a Trust Establishment Document in a VC
+:::
+
+#### JSON Web Token (JWT)
+
+::: example Verifiable Credential
+TODO: example of a Trust Establishment Document in a VC
+:::
+
 ## Usages
 
 ### Usage #1 – Sentiment Declaration
 
-### Usage #2 - Trusted Issuers
+### Usage #2 – Trusted Issuers
 
-### Usage #3 - Trusted Credentials
+### Usage #3 – Trusted Credentials
 
 
 ## Appendix
@@ -243,12 +263,6 @@ how is the integrity of sentiment declarations maintained?
 :::
 
 ## References
-
-[[def: Verifiable Credentials, Verifiable Credential, VC, VCs]]
-  - [Verifiable Credentials Data Model v1.1](https://www.w3.org/TR/vc-data-model/). Gregg Kellogg, Pierre-Antoine Champin, Manu Sporny, Grant Noble, Dave Longley, Daniel C. Burnett, Brent Zundel, Kyle Den Hartog. 03 March 2022. Status: W3C Recommendation.
-
-[[def:Decentralized Identifiers, DIDs]]
-  - [Decentralized Identifiers (DIDs) v1.0](https://www.w3.org/TR/did-core/). Manu Sporny, Amy Guy, Markus Sabadello, Drummond Reed, Dave Longley, Orie Steele, Christopher Allen. 03 August 2021. Status: W3C Proposed Recommendation.
 
 [[def: JSON Schema]]
   - [JSON Schema](https://json-schema.org/)
