@@ -24,7 +24,7 @@ Trust Establishment 0.0.1
 
 ## Abstract
 
-Trust in the decentralized identity space is a problem that many have tried to solve. This specification aims to take a piece of the problem around [[ref:Trust Establishment]]: a means by which an [[ref:Party]] communicates their assertions for a [[ref:Topic]] about a set of [[ref:Parties]]. [[ref:Trust Establishment]] is intended to be informational, though it can be used to prescribe resulting action. Not all potential usages will be covered in this specification.
+Trust in the decentralized identity space is a problem that many have tried to solve. This specification aims to take a piece of the problem around [[ref:Trust Establishment]]: a means by which an [[ref:Party]] communicates their assertions for a [[ref:Topic]] about a set of [[ref:Parties]]. [[ref:Trust Establishment]] is intended to be informational, though it can be used to prescribe resulting action. Not all potential usage will be covered in this specification.
 
 ## Status of This Document
 
@@ -42,7 +42,7 @@ Credential, Assertion, Attestation, etc.
 ~ Refers to the [W3C specification](https://www.w3.org/TR/vc-data-model) of the Verifiable Credentials Data Model.
 
 [[def:Topic, Trust Topic]]
-~ A [[ref:Schema]]-driven document that gives purpose to a sentiment document. A topic can be anything: from the tangibly measurable (e.g. success rate of a bussiness prossess) to the intangible (e.g. how one party feels about another).
+~ A [[ref:Schema]]-driven document that gives purpose to a sentiment document. A topic can be anything: from the tangibly measurable (e.g. success rate of a business process) to the intangible (e.g. how one party feels about another).
 
 [[def:Trust Establishment, Trust Establishment Document, Trust Establishment Documents]]
 ~ The process by which a [[ref:Party]] makes trust statements about a given [[ref:Party]] for a given [[ref:Topic]] using Trust Establishment Documents.
@@ -81,13 +81,13 @@ an interaction.
 which provide information semantic meaning and classification for the data in a credential.
 
 ## Structure of this Document
-This document has two primary sections: In the first we describe the data models for [[ref:Topics]] and [[ref:Trust Establishment Documents]]. In the second, we cover some usages of [[ref: Trust Establishment Documents]].t
+This document has two primary sections: In the first we describe the data models for [[ref:Topics]] and [[ref:Trust Establishment Documents]]. In the second, we cover some usage of [[ref: Trust Establishment Documents]].t
 
 Examples in this document use the Verifiable Credentials Data Model [[spec:VC-DATA-MODEL]] and the [[spec:DID-CORE]] formats for illustrative purposes only; this specification is intended to support any JSON-serializable [[ref:Claim]] format.
 
 ## Data Model
 
-[[ref:Trust Establishment Documents]] are objects that articulate information a [[ref:Party]] publishes in order to share _assertions_ about a set of [[ref:DID]]-identified entities. [[ref:Issuers]], [[ref:Verifiers]], and [[ref:Holders]] may find utility in understanding a [[ref:Party]]'s assertions in making decisions in decentralized web interactions, some of which are covered in the [Usages](#usages) section.
+[[ref:Trust Establishment Documents]] are objects that articulate information a [[ref:Party]] publishes in order to share _assertions_ about a set of [[ref:DID]]-identified entities. [[ref:Issuers]], [[ref:Verifiers]], and [[ref:Holders]] may find utility in understanding a [[ref:Party]]'s assertions in making decisions in decentralized web interactions, some of which are covered in the [Usage](#usage) section.
 
 **Trust Topic Example**
 
@@ -225,28 +225,280 @@ how is the integrity of sentiment declarations maintained?
 
 #### Verifiable Credential
 
-::: example Linnked Data Proof Verifiable Credential
-TODO: example of a Trust Establishment Document in a VC
+**Linked Data Proof Verifiable Credential Trust Establishment Document**
+
+::: example Linked Data Proof Verifiable Credential Trust Establishment Document
+
+```json
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://www.w3.org/2018/credentials/examples/v1"
+  ],
+  "id": "http://example.edu/credentials/3732",
+  "type": ["VerifiableCredential", "TrustEstablishment", "TrustedSuppliers"],
+  "issuer": "https://example.edu/issuers/565049",
+  "issuanceDate": "2010-01-01T00:00:00Z",
+  "credentialSubject": {
+    "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+    "trustEstablishment": { 
+	  "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
+	  "author": "did:example:alice",
+	  "created": "2010-01-01T19:23:24Z",
+	  "version": "0.0.3",
+	  "topic": "https://example.com/trusted-supplier.schema.json",
+	  "entries": {
+	    "did:example:bob": {
+	      "on_time_percentage": 92,
+	      "goods": ["applewood", "hotel buffet style", "thick cut"]
+	    },
+	    "did:example:carol": {
+	      "on_time_percentage": 74,
+	      "goods": ["oinkys", "porkys", "wilburs"]
+	    }
+	  }
+    }
+  },
+  "proof": {
+  	"type": "Ed25519Signature2020",
+    "created": "2021-11-13T18:19:39Z",
+    "verificationMethod": "https://example.edu/issuers/565049#key-1",
+    "proofPurpose": "assertionMethod",
+    "proofValue": "z58DAdFfa9SkqZMVPxAQpic7ndSayn1PzZs6ZjWp1CktyGesjuTSwRdoWhAfGFCF5bppETSTojQCrfFPP2oumHKtz"
+  }
+}
+```
+
 :::
 
-::: example JWT Verifiable Credential
-TODO: example of a Trust Establishment Document in a VC
-:::
 
 #### JSON Web Token (JWT)
 
-::: example Verifiable Credential
-TODO: example of a Trust Establishment Document in a VC
+**JWT-VC Verifiable Credential Trust Establishment Document**
+
+::: example JWT-VC Verifiable Credential Trust Establishment Document - Header
+
+```json
+{
+    "alg": "RS256",
+    "typ": "JWT",
+    "kid": "did:example:abfe13f712120431c276e12ecab#keys-1"
+}
+```
+
 :::
 
-## Usages
+::: example JWT-VC Verifiable Credential Trust Establishment Document - Body
+
+```json
+{
+  "sub": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+  "jti": "http://example.edu/credentials/3732",
+  "iss": "https://example.com/keys/foo.jwk",
+  "nbf": 1541493724,
+  "iat": 1541493724,
+  "exp": 1573029723,
+  "nonce": "660!6345FSer",
+  "vc": {
+    "@context": [
+    	"https://www.w3.org/2018/credentials/v1",
+    	"https://www.w3.org/2018/credentials/examples/v1"
+  	],
+	"type": ["VerifiableCredential", "TrustEstablishment", "TrustedSuppliers"],
+	"credentialSubject": {
+	  "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+	  "trustEstablishment": { 
+	  	"id": "32f54163-7166-48f1-93d8-ff217bdb0653",
+	  	"author": "did:example:alice",
+	  	"created": "2010-01-01T19:23:24Z",
+	  	"version": "0.0.3",
+	  	"topic": "https://example.com/trusted-supplier.schema.json",
+	  	"entries": {
+	      "did:example:bob": {
+	      	"on_time_percentage": 92,
+	        "goods": ["applewood", "hotel buffet style", "thick cut"]
+	      },
+	      "did:example:carol": {
+	      	"on_time_percentage": 74,
+	        "goods": ["oinkys", "porkys", "wilburs"]
+	      }
+	  	}
+	  }
+  	}
+  }
+}
+```
+:::
+
+::: note
+The third component of the JWT, the signature in JWS form is not shown. You can imagine it being a "third" component of the JWT above.
+:::
+
+
+## Usage
 
 ### Usage #1 – Sentiment Declaration
 
+Sentiment Declaration is a usage of the [[ref:Trust Establishment]] data model that provides a means by which an [[ref:Entity]] communicates their sentiment (what they may feel or think) for a [[ref:Topic]] about a set of [[ref:Parties]]. Sentiment Declaration is intended to be informational, and the prescription of any resulting actions taken based on the contents of the document are out of scope of this specification.
+
+**Sentiment Declaration Example: My Faves**
+
+The year is 2007 and your pink-colored mobile carrier announces a program to let you make unlimited calls and texts to five contacts of your choosing: your faves. Using the [[ref:Trust Establishment]] specification, you create a [[ref:JSON Schema]] [[ref:Topic]] that supports you enumerating your faves.
+
+::: example Sentiment of "My Faves" :::
+
+```json
+{
+  "$id": "https://example.com/my-faves.schema.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "title": "My Faves",
+  "type": "object",
+  "properties": {
+    "faves": {
+      "type": "array",
+      "items": {
+      	"type": "string",
+      	"pattern": "^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"
+      },
+      "minItems": 1,
+      "maxItems": 5
+    }
+  },
+  "required": ["faves"],
+  "additionalProperties": false
+}
+```
+
+:::
+
+Next, you take the "My Faves" schema, and put it in a Trust Establishment document, which you can share with your mobile carrier, or post it on social media if you're feeling bold.
+
+::: example Trust Establishment Sentiment using the "My Faves" Topic
+
+```json
+{
+  "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
+  "author": "did:example:alice",
+  "created": "2010-01-01T19:23:24Z",
+  "version": "0.0.1",
+  "topic": "https://example.com/my-faves.schema.json",
+  "entries": {
+    "did:phone:1234567890": {
+      "faves": ["1-888-867-5309", "1-603-413-4124", "1-605-475-6960", "1-605-475-6968", "911"]
+    }
+  }
+}
+```
+
+:::
+
+You may imagine your carrier similarly using the "My Faves" schema to enumerate favs for all customers, each a separate entity within the [[ref:Trust Establishment Document]].
+
 ### Usage #2 – Trusted Issuers
+
+A common usage of [[ref:Trust Establishment Documents]] is by a [[ref:Verifier]] wishing to provide information on which [[ref:Credentials]] they accept from which [[ref:Issuers]]. Using [[ref:Verifiable Credentials]] we know that a given Credential may have a signle schema, but also may reference multiple schemas or `type` documents for the same Credential. Using a "Trusted Issuers for Credential" topic, we can fulfill this use case.
+
+::: example Trusted Issuers for Credential :::
+
+```json
+{
+  "$id": "https://example.com/trusted-issuers-for-credential.schema.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "title": "Trusted Issuers for Credential",
+  "type": "object",
+  "properties": {
+    "credential": {
+      "type": "array",
+      "items": {
+      	"type": "string",
+      },
+      "minItems": 1
+    }
+  },
+  "required": ["credential"],
+  "additionalProperties": false
+}
+```
+
+:::
+
+Next, you take the "Trusted Issuers For Credential" schema, and put it in a Trust Establishment document, which you can share with any relying party aiming to seek your verification services.
+
+::: example Trust Establishment using the "Trusted Issuers for Credential" Topic
+
+```json
+{
+  "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
+  "author": "did:example:alice",
+  "created": "2010-01-01T19:23:24Z",
+  "version": "0.0.1",
+  "topic": "https://example.com/trusted-issuers-for-credential.schema.json",
+  "entries": {
+    "did:example:bob": {
+      "credentials": ["example.com/dank-meme.schema.json", "example.com/danker-meme.schema.json"]
+    },
+    "did:example:carol": {
+       "credentials": ["example.com/dankest-meme.schema.json", "example.com/dankest-meme.schema.json.ld"]
+    }
+  }
+}
+```
+
+:::
+
 
 ### Usage #3 – Trusted Credentials
 
+Expanding on the previous example, it is also conceivable for an issuer to want to use [[ref:Trust Establishment]] to create a single, larger document, that encapsulates multiple credentials for multiple issuers. Since [[ref:Topics]] can be as flexible as [[ref:JSON Schema]] allows, this is again possible:
+
+::: example Multiple Trusted Issuers for Multiple Credentials
+
+```json
+{
+  "$id": "https://example.com/multiple-trusted-issuers-for-multiple-credentials.schema.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "title": "Multiple Trusted Issuers for Multiple Credentials",
+  "type": "object",
+  "properties": {
+    "credentials": {
+      "type": "object"
+    }
+  },
+  "required": ["credentials"],
+  "additionalProperties": false
+}
+```
+
+:::
+
+As we can see below, Alice, identified by `did:example:alice` accepts a variety of credential types from a set of issuers. There is no requirement for overlap, or consistency outside the structure imposed by the [[ref:Topic]].
+
+::: example Trust Establishment using the "Multiple Trusted Issuers for Multiple Credentials" Topic
+
+```json
+{
+  "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
+  "author": "did:example:alice",
+  "created": "2010-01-01T19:23:24Z",
+  "version": "0.0.1",
+  "topic": "https://example.com/multiple-trusted-issuers-for-multiple-credentials.schema.json",
+  "entries": {
+    "did:example:bob": {
+      "credentials": {
+      	"memes": ["example.com/dank-meme.schema.json", "example.com/danker-meme.schema.json"],
+      	"degrees": ["example.com/bachelors-degree.schema.json", "example.com/masters-degree.schema.json"]
+      }
+    },
+    "did:example:carol": {
+       "credentials": {
+       	"employment": ["example.com/employment.schema.json", "example.com/eu-employment.schema.json.ld"],
+       	"artist": ["example.com/oil-canvas.schema.json", "example.com/crayons.schema.json.ld"]
+       }
+    }
+  }
+}
+```
+:::
 
 ## Appendix
 
