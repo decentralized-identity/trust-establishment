@@ -1,10 +1,10 @@
-Sentiment Declaration 0.0.1
+Trust Establishment 0.0.1
 ==================
 
 **Specification Status:** Strawman
 
 **Latest Draft:**
-  [identity.foundation/trust-establishment/sentinemtn-declaration](https://identity.foundation/trust-establishment/sentiment-declaration)
+  [identity.foundation/trust-establishment](https://identity.foundation/trust-establishment)
 
 <!-- -->
 **Editors:**
@@ -24,11 +24,11 @@ Sentiment Declaration 0.0.1
 
 ## Abstract
 
-Trust in the decentralized identity space is a problem that many have tried to solve. This specification aims to take a piece of the problem around [[ref:Semantic Declaration]]: a means by which an [[ref:Entity]] communicates their sentiment for a [[ref:Topic]] about a set of [[ref:Parties]]. [[ref: Sentiment Declaration]] is intended to be informational, and presciptions of any resulting actions taken based on the contents of the document are out of scope of this specification.
+Trust in the decentralized identity space is a problem that many have tried to solve. This specification aims to take a piece of the problem around [[ref:Trust Establishment]]: a means by which an [[ref:Entity]] communicates their sentiment for a [[ref:Topic]] about a set of [[ref:Parties]]. [[ref:Trust Establishment]] is intended to be informational, though it can be used to prescribe resulting action. Not all potential usages will be covered in this specification.
 
 ## Status of This Document
 
-Sentiment Declaration is a _STRAWMAN_ specification under development within the Decentralized Identity Foundation (DIF). It incorporates requirements and learnings from related work of many active industry players into a shared specification that meets the collective needs of the community.
+Trust Establishment is a _STRAWMAN_ specification under development within the Decentralized Identity Foundation (DIF). It incorporates requirements and learnings from related work of many active industry players into a shared specification that meets the collective needs of the community.
 
 This specification is regularly updated to reflect relevant changes, and we encourage active engagement on [GitHub](https://github.com/decentralized-identity/trust-establishment/issues) and other mediums (e.g., [DIF Slack](https://difdn.slack.com/archives/C4X50SNUX)).
 
@@ -41,17 +41,17 @@ Credential, Assertion, Attestation, etc.
 [[def: Verifiable Credential, VC, VCs]]
 ~ Refers to the [W3C specification](https://www.w3.org/TR/vc-data-model) of the Verifiable Credentials Data Model.
 
-[[def:Topic, Sentiment Topic]]
+[[def:Topic, Trust Topic]]
 ~ A [[ref:Schema]]-driven document that gives purpose to a sentiment document. A topic can be anything: from the tangibly measurable (e.g. success rate of a bussiness prossess) to the intangible (e.g. how one party feels about another).
 
-[[def:Sentiment Declaration, Sentiment Declaration Document, Sentiment Declaration Documents, Sentiment Declarations]]
-~ The process by which one [[ref:Party]] declares their sentiment about a given [[ref:Party]] for a given [[ref:Topic]].
+[[def:Trust Establishment, Trust Establishment Document, Trust Establishment Document]]
+~ The process by which a[[ref:Party]] makes trust statements about a given [[ref:Party]] for a given [[ref:Topic]] using Trust Establishment Documents.
 
 [[def:Identified Parties, Party, Parties]] 
 ~ Entities that establish their identity by means of a [[def:Decentralized Identifier]]. Parties are commonly referred to as [[ref:Issuers]], [[ref:Holders]], and [[ref:Verifiers]].
 
-[[def:Sentiment Host, Host]]
-~ Entities that are responsible for hosting and communicating [[ref:Sentiment Declarations]].
+[[def:Trust Host, Topic Host, Host]]
+~ Entities that are responsible for hosting and communicating [[ref:Trust Establishment Documents]].
 
 [[def:Issuer, Issuers]]
 ~ Issuers are entities that issue [[ref:Claims]] to [[ref:Holders]], and may be represented as an [[ref:Identified Party]] inside of a [[ref:Sentiment Declaration]].
@@ -81,17 +81,17 @@ an interaction.
 which provide information semantic meaning and classification for the data in a credential.
 
 ## Structure of this Document
-This document has two primary sections: In the first, there is a model for defining the set of information needed to create a [[ref:Topic]]. The second covers the information needed for a [[ref:Party]] to create a [[ref:Sentiment Declaration]] document.
+This document has two primary sections: In the first we describe the data models for [[ref:Topics]] and [[ref:Trust Establishment Documents]]. In the second, we cover some usages of [[ref: Trust Establishment Documents]].t
 
 Examples in this document use the [Verifiable Credentials Data Model](https://www.w3.org/TR/vc-data-model/) and the [Decentralized  Identifiers (DIDs)](https://www.w3.org/TR/did-core/) formats for illustrative purposes only; this specification is intended to support any JSON-serializable [[ref:Claim]] format.
 
-## Sentiment Declaration
+## Data Model
 
-[[ref:Sentiment Declaration Documents]] are objects that articulate information a [[ref:Party]] publishes in order to share their _sentiment_ about a set of [[ref:DID]]-identified entities. [[ref:Issuers]], [[ref:Verifiers]], and [[ref:Holders]] ma find utility in understanding a [[ref:Party]]'s sentiment in making decisions in decentralized web interactions.
+[[ref:Trust Establishment Documents]] are objects that articulate information a [[ref:Party]] publishes in order to share _assertions_ about a set of [[ref:DID]]-identified entities. [[ref:Issuers]], [[ref:Verifiers]], and [[ref:Holders]] may find utility in understanding a [[ref:Party]]'s assertions in making decisions in decentralized web interactions, some of which are covered in the [Usages](###usages) section.
 
-**Sentiment Topic Example**
+**Trust Topic Example**
 
-::: example Sentiment Topic - Full Example
+::: example Trust Topic - Full Example
 
 ```json
 {
@@ -117,10 +117,10 @@ Examples in this document use the [Verifiable Credentials Data Model](https://ww
 ```
 :::
 
-**Sentiment Declaration Example**
+**Trust Establishment Example**
 
 
-::: example Sentiment Declaration - Full Example
+::: example Trust Establishment - Full Example
 
 ```json
 {
@@ -146,11 +146,11 @@ Examples in this document use the [Verifiable Credentials Data Model](https://ww
 ### Topic Composition
 
 ::: todo text on topics
-what's a sentiment topic?
+what's a trust topic?
 :::
 
 
-A topic ****MUST**** be a [[ref:JSON Schema]] document that can be applied to any number of [[ref:Parties]] identified in the `entries` property of a [[ref:Sentiment Document]].
+A topic ****MUST**** be a [[ref:JSON Schema]] document that can be applied to any number of [[ref:Parties]] identified in the `entries` property of a [[ref:Trust Establishment Document]].
 
 
 **Example JSON Object**
@@ -178,15 +178,15 @@ A topic ****MUST**** be a [[ref:JSON Schema]] document that can be applied to an
 }
 ```
 
-### Sentiment Declaration Composition
+### Trust Establishment Document Composition
 
-::: todo text on sentiment declarations
-what's a sentiment declaration?
+::: todo text on trust establishment documents
+what's a trust establishment document?
 :::
 
-The following properties are for use at the top-level of a [[ref:Sentiment Declaration Document]]. Any properties that are not defined below ****MUST**** be ignored.
+The following properties are for use at the top-level of a [[ref:Trust Establishment Document]]. Any properties that are not defined below ****MUST**** be ignored.
 
-- `id` - The object ****MUST**** contain an `id` property. The value of this property ****MUST**** be a string. The string ****SHOULD**** provide a unique ID for the desired context. For example, a [UUID](https://tools.ietf.org/html/rfc4122) such as `32f54163-7166-48f1-93d8-ff217bdb0653` could provide an ID that is unique in a global context, while a simple string such as `my_sentiment_declaration-1` could be suitably unique in a local context.
+- `id` - The object ****MUST**** contain an `id` property. The value of this property ****MUST**** be a string. The string ****SHOULD**** provide a unique ID for the desired context. For example, a [UUID](https://tools.ietf.org/html/rfc4122) such as `32f54163-7166-48f1-93d8-ff217bdb0653` could provide an ID that is unique in a global context, while a simple string such as `my_trust_establishment-1` could be suitably unique in a local context.
 - `author` - The ****MUST**** contain an `id` property. The value of this property ****MUST**** be a string value representing the [[ref:DID]] of the author.
 - `created` - The object ****MUST**** contain a `created` property proving a date-time value for when the object was created. The value of this property ****MUST**** be a [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) compliant timestamp value.
 - `version` - The object ****MUST**** contain a `version` property. The value of this property ****MUST**** be a number. It is recommended that the value is a monotonic increasing integer value.
@@ -218,6 +218,15 @@ how is the integrity of sentiment declarations maintained?
   }
 }
 ```
+
+## Usages
+
+### Usage #1 – Sentiment Declaration
+
+### Usage #2 - Trusted Issuers
+
+### Usage #3 - Trusted Credentials
+
 
 ## Appendix
 
@@ -251,3 +260,5 @@ how is the integrity of sentiment declarations maintained?
 
 [[def: Linked Data Proofs, Data Integrity]]
   - [Data Integrity 1.0](https://w3c-ccg.github.io/data-integrity-spec/). Dave Longley, Manu Sporny. 30 April 2022. Status: W3C Draft Community Report.
+
+[[spec]]
