@@ -11,6 +11,7 @@ Trust Establishment 0.0.1
 ~ [Gabe Cohen](https://www.linkedin.com/in/cohengabe/) (Block)
 ~ [Daniel Buchner](https://www.linkedin.com/in/dbuchner/) (Block)
 ~ [Mike Ebert](https://www.linkedin.com/in/michaelebert/) (Indicio)
+~ [Sam Curren](https://www.linkedin.com/in/samcurren/) (Indicio)
 ~ [Juan Caballero](https://www.linkedin.com/in/juan-caballero/) (Centre Consortium)
 
 **Contributors:**
@@ -81,7 +82,7 @@ an interaction.
 which provide information semantic meaning and classification for the data in a credential.
 
 ## Structure of this Document
-This document has two primary sections: In the first we describe the data models for [[ref:Topics]] and [[ref:Trust Establishment Documents]]. In the second, we cover some usage of [[ref: Trust Establishment Documents]].t
+This document has two primary sections: In the first we describe the data models for [[ref:Topics]] and [[ref:Trust Establishment Documents]]. In the second, we cover some usage of [[ref: Trust Establishment Documents]].
 
 Examples in this document use the Verifiable Credentials Data Model [[spec:VC-DATA-MODEL]] and the [[spec:DID-CORE]] formats for illustrative purposes only; this specification is intended to support any JSON-serializable [[ref:Claim]] format.
 
@@ -108,7 +109,7 @@ Examples in this document use the Verifiable Credentials Data Model [[spec:VC-DA
     "goods": {
       "type": "array",
       "items": {
-          "format": "string"
+        "format": "string"
       }
     }
   },
@@ -237,13 +238,15 @@ how is the integrity of sentiment declarations maintained?
   ],
   "id": "http://example.edu/credentials/3732",
   "type": ["VerifiableCredential", "TrustEstablishment", "TrustedSuppliers"],
-  "issuer": "https://example.edu/issuers/565049",
+  "issuer": "did:example:alice",
   "issuanceDate": "2010-01-01T00:00:00Z",
   "credentialSubject": {
     "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
     "trustEstablishment": { 
+    // Is this still needed?
 	  "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
 	  "author": "did:example:alice",
+    // Is this still needed?
 	  "created": "2010-01-01T19:23:24Z",
 	  "version": "0.0.3",
 	  "topic": "https://example.com/trusted-supplier.schema.json",
@@ -262,7 +265,7 @@ how is the integrity of sentiment declarations maintained?
   "proof": {
   	"type": "Ed25519Signature2020",
     "created": "2021-11-13T18:19:39Z",
-    "verificationMethod": "https://example.edu/issuers/565049#key-1",
+    "verificationMethod": "did:example:alice#key-1",
     "proofPurpose": "assertionMethod",
     "proofValue": "z58DAdFfa9SkqZMVPxAQpic7ndSayn1PzZs6ZjWp1CktyGesjuTSwRdoWhAfGFCF5bppETSTojQCrfFPP2oumHKtz"
   }
@@ -280,9 +283,9 @@ how is the integrity of sentiment declarations maintained?
 
 ```json
 {
-    "alg": "RS256",
+    "alg": "EdDSA",
     "typ": "JWT",
-    "kid": "did:example:abfe13f712120431c276e12ecab#keys-1"
+    "kid": "did:alice#keys-1"
 }
 ```
 
@@ -292,20 +295,20 @@ how is the integrity of sentiment declarations maintained?
 
 ```json
 {
-  "sub": "did:example:ebfeb1f712ebc6f1c276e12ec21",
-  "jti": "http://example.edu/credentials/3732",
-  "iss": "https://example.com/keys/foo.jwk",
+  "sub": "did:example:alice",
+  "jti": "http://example.com/credentials/3732",
+  "iss": "did:alice#keys-1",
   "nbf": 1541493724,
   "iat": 1541493724,
   "exp": 1573029723,
   "nonce": "660!6345FSer",
   "vc": {
     "@context": [
-    	"https://www.w3.org/2018/credentials/v1",
-    	"https://www.w3.org/2018/credentials/examples/v1"
-  	],
-	"type": ["VerifiableCredential", "TrustEstablishment", "TrustedSuppliers"],
-	"credentialSubject": {
+  	 "https://www.w3.org/2018/credentials/v1",
+  	 "https://www.w3.org/2018/credentials/examples/v1"
+    ],
+	 "type": ["VerifiableCredential", "TrustEstablishment", "TrustedSuppliers"],
+	 "credentialSubject": {
 	  "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
 	  "trustEstablishment": { 
 	  	"id": "32f54163-7166-48f1-93d8-ff217bdb0653",
@@ -324,8 +327,8 @@ how is the integrity of sentiment declarations maintained?
 	      }
 	  	}
 	  }
-  	}
   }
+ }
 }
 ```
 :::
@@ -501,6 +504,12 @@ As we can see below, Alice, identified by `did:example:alice` accepts a variety 
 :::
 
 ## Appendix
+
+### Topic Registry
+
+::: todo Topic Registry
+  Create a place for topics to be registered.
+:::
 
 ### JSON Schema
 
