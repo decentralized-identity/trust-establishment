@@ -90,6 +90,20 @@ Examples in this document use the Verifiable Credentials Data Model [[spec:VC-DA
 
 [[ref:Trust Establishment Documents]] are objects that articulate information a [[ref:Party]] publishes in order to share _assertions_ about a set of [[ref:DID]]-identified entities. [[ref:Issuers]], [[ref:Verifiers]], and [[ref:Holders]] may find utility in understanding a [[ref:Party]]'s assertions in making decisions in decentralized web interactions, some of which are covered in the [Usage](#usage) section.
 
+There is a base data model, along with document based adapatations that allow for aspect oriented uses.
+
+### Base Model
+
+```json
+{
+  "topic": "", //schema uri
+  "entity": "", //subject did
+  "properties": { 
+    //attributes as defined in the schema
+  }
+}
+```
+
 **Trust Topic Example**
 
 ::: example Trust Topic - Full Example
@@ -116,12 +130,28 @@ Examples in this document use the Verifiable Credentials Data Model [[spec:VC-DA
   "additionalProperties": false
 }
 ```
-:::
+::: example base model
+
+
+```json
+{
+  "schema": "https://example.com/trusted-supplier.schema.json",
+  "entity": "did:example:alice",
+  "properties": {
+    "on_time_percentage": 92,
+    "goods": ["applewood", "hotel buffet style", "thick cut"]
+  }
+}
+```
+
+There are several document representations aligned around specific organizations of data: Topic Oriented, Entity Oriented, Entity Topic Oriented, and Set Oriented. Each representation is optomized around a particular indexing vector, but all contain the necessary information to produce the base data model for each assertion.
 
 **Trust Establishment Example**
 
 
-::: example Trust Establishment - Full Example
+::: Topic Oriented Example
+
+This pulls the topic to the top of the document, and indexes properties by entity.
 
 ```json
 {
@@ -140,6 +170,104 @@ Examples in this document use the Verifiable Credentials Data Model [[spec:VC-DA
       "goods": ["oinkys", "porkys", "wilburs"]
     }
   }
+}
+```
+::: Entity Oriented Example
+
+This pulls the topic to the top of the document, and indexes properties by entity.
+
+```json
+{
+  "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
+  "author": "did:example:alice",
+  "created": "2010-01-01T19:23:24Z",
+  "version": 2,
+  "entity": "did:example:bob",
+  "entries": {
+    "https://example.com/trusted-supplier.schema.json": {
+      "on_time_percentage": 92,
+      "goods": ["applewood", "hotel buffet style", "thick cut"]
+    },
+    "https://example.com/other.schema.json": {
+      "foo": "bar"
+    }
+  }
+}
+```
+::: Entity Topic Oriented Example
+
+This document specifies neither entity or topic at the document level, and indexes by entity, then topic.
+
+```json
+{
+  "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
+  "author": "did:example:alice",
+  "created": "2010-01-01T19:23:24Z",
+  "version": 2,
+  "entries": {
+    "did:example:bob": {
+      "https://example.com/trusted-supplier.schema.json":{
+        "on_time_percentage": 92,
+        "goods": ["applewood", "hotel buffet style", "thick cut"]
+      },
+      "https://example.com/other.schema.json": {
+        "foo": "bar"
+      }
+    },
+    "did:example:carol": {
+      "https://example.com/trusted-supplier.schema.json":{
+        "on_time_percentage": 74,
+        "goods": ["oinkys", "porkys", "wilburs"]
+      },
+      "https://example.com/other.schema.json": {
+        "foo": "baz"
+      }
+    }
+  }
+}
+```
+::: Set Oriented Example
+
+This document specifies neither entity or topic at the document level, and indexes by entity, then topic.
+
+```json
+{
+  "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
+  "author": "did:example:alice",
+  "created": "2010-01-01T19:23:24Z",
+  "version": 2,
+  "entries": [
+    {
+      "schema": "https://example.com/trusted-supplier.schema.json",
+      "entity": "did:example:bob",
+      "properties": {
+        "on_time_percentage": 92,
+        "goods": ["applewood", "hotel buffet style", "thick cut"]
+      }
+    },
+    {
+      "schema": "https://example.com/other.schema.json",
+      "entity": "did:example:bob",
+      "properties": {
+        "foo": "bar"
+      }
+    },
+    {
+      "schema": "https://example.com/trusted-supplier.schema.json",
+      "entity": "did:example:carol",
+      "properties": {
+        "on_time_percentage": 74,
+        "goods": ["oinkys", "porkys", "wilburs"]
+      }
+    },
+    {
+      "schema": "https://example.com/other.schema.json",
+      "entity": "did:example:carol",
+      "properties": {
+        "foo": "baz"
+      }
+    }
+  ]
 }
 ```
 :::
