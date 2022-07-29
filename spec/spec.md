@@ -29,9 +29,9 @@ Trust in the decentralized identity space is a problem that many have tried to s
 
 ## Status of This Document
 
-Trust Establishment is a _STRAWMAN_ specification under development within the Decentralized Identity Foundation (DIF). It incorporates requirements and learnings from related work of many active industry players into a shared specification that meets the collective needs of the community.
+Trust Establishment is a _STRAWMAN_ specification under development within the Decentralized Identity Foundation (DIF). It incorporates requirements and learning from related work of many active industry players into a shared specification that meets the collective needs of the community.
 
-This specification is regularly updated to reflect relevant changes, and we encourage active engagement on [GitHub](https://github.com/decentralized-identity/trust-establishment/issues) and other mediums (e.g., [DIF Slack](https://difdn.slack.com/archives/C4X50SNUX)).
+This specification is regularly updated to reflect relevant changes, and we encourage active engagement on [GitHub](https://github.com/decentralized-identity/trust-establishment/issues) and other mediums (e.g. [DIF Slack](https://difdn.slack.com/archives/C4X50SNUX)).
 
 ## Terminology
 
@@ -42,7 +42,7 @@ Credential, Assertion, Attestation, etc.
 [[def: Verifiable Credential, VC, VCs]]
 ~ Refers to the [W3C specification](https://www.w3.org/TR/vc-data-model) of the Verifiable Credentials Data Model.
 
-[[def:Topic, Trust Topic]]
+[[def:Topic, Topics, Trust Topic]]
 ~ A [[ref:Schema]]-driven document that gives purpose to a sentiment document. A topic can be anything: from the tangibly measurable (e.g. success rate of a business process) to the intangible (e.g. how one party feels about another).
 
 [[def:Trust Establishment, Trust Establishment Document, Trust Establishment Documents]]
@@ -90,24 +90,24 @@ Examples in this document use the Verifiable Credentials Data Model [[spec:VC-DA
 
 [[ref:Trust Establishment Documents]] are objects that articulate information a [[ref:Party]] publishes in order to share _assertions_ about a set of [[ref:DID]]-identified entities. [[ref:Issuers]], [[ref:Verifiers]], and [[ref:Holders]] may find utility in understanding a [[ref:Party]]'s assertions in making decisions in decentralized web interactions, some of which are covered in the [Usage](#usage) section.
 
-There is a base data model, along with document based adapatations that allow for aspect oriented uses.
+There is a base data model, along with document based adaptations that allow for aspect oriented uses.
 
 ### Base Model
 
 ```json
 {
-  "topic": "", //schema uri
-  "entity": "", //subject did
+  "topic": "https://example.com/schema-uri.json" // schema uri
+  "entity": "did:example:subject", // subject did
+  // attributes as defined in the schema
   "properties": { 
-    //attributes as defined in the schema
+    "sample": "property"
   }
 }
 ```
 
-**Trust Topic Example**
+#### Example: Trust Topic
 
 ::: example Trust Topic - Full Example
-
 ```json
 {
   "$id": "https://example.com/trusted-supplier.schema.json",
@@ -130,9 +130,11 @@ There is a base data model, along with document based adapatations that allow fo
   "additionalProperties": false
 }
 ```
-::: example base model
+:::
 
+#### Example: Base Model
 
+::: example Base Model
 ```json
 {
   "schema": "https://example.com/trusted-supplier.schema.json",
@@ -143,15 +145,15 @@ There is a base data model, along with document based adapatations that allow fo
   }
 }
 ```
+:::
 
-There are several document representations aligned around specific organizations of data: Topic Oriented, Entity Oriented, Entity Topic Oriented, and Set Oriented. Each representation is optomized around a particular indexing vector, but all contain the necessary information to produce the base data model for each assertion.
+There are several document representations aligned around specific organizations of data: _Topic Oriented_, _Entity Oriented_, _Entity Topic Oriented_, and _Set Oriented_. Each representation is optimized around a particular indexing vector, but all contain the necessary information to produce the base data model for each assertion.
 
-**Trust Establishment Example**
+#### Example: Trust Establishment
 
+This pulls the _topic_ to the top of the document, and indexes properties by _entity_, where the _entity_ happens to be [[ref:DID]].
 
-::: Topic Oriented Example
-
-This pulls the topic to the top of the document, and indexes properties by entity.
+::: example Topic Oriented
 
 ```json
 {
@@ -172,9 +174,13 @@ This pulls the topic to the top of the document, and indexes properties by entit
   }
 }
 ```
-::: Entity Oriented Example
+:::
 
-This pulls the topic to the top of the document, and indexes properties by entity.
+#### Example: Entity Oriented
+
+This pulls the _topic_ and _entity_ to the top of the document, and indexes properties by _entity_, where the _entity_ happens to be a [[ref:Schema]].
+
+::: example Entity Oriented
 
 ```json
 {
@@ -194,9 +200,13 @@ This pulls the topic to the top of the document, and indexes properties by entit
   }
 }
 ```
-::: Entity Topic Oriented Example
+:::
 
-This document specifies neither entity or topic at the document level, and indexes by entity, then topic.
+#### Example: Entity Topic Oriented
+
+This document specifies neither _entity_ nor _topic_ at the document level, and indexes by _entity_, then _topic_.
+
+::: example Entity Topic Oriented
 
 ```json
 {
@@ -226,9 +236,14 @@ This document specifies neither entity or topic at the document level, and index
   }
 }
 ```
-::: Set Oriented Example
+:::
 
-This document specifies neither entity or topic at the document level, and indexes by entity, then topic.
+
+#### Example: Set Oriented
+
+This document specifies neither _entity_ nor _topic_ at the document level, and indexes by _entity_, then _topic_.
+
+::: example Set Oriented
 
 ```json
 {
@@ -315,13 +330,13 @@ what's a trust establishment document?
 
 The following properties are for use at the top-level of a [[ref:Trust Establishment Document]]. Any properties that are not defined below ****MUST**** be ignored.
 
-- `id` - The object ****MUST**** contain an `id` property. The value of this property ****MUST**** be a string. The string ****SHOULD**** provide a unique ID for the desired context. For example, a [UUID](https://tools.ietf.org/html/rfc4122) such as `32f54163-7166-48f1-93d8-ff217bdb0653` could provide an ID that is unique in a global context, while a simple string such as `my_trust_establishment-1` could be suitably unique in a local context.
-- `author` - The ****MUST**** contain an `id` property. The value of this property ****MUST**** be a string value representing the [[ref:DID]] of the author.
-- `created` - The object ****MUST**** contain a `created` property proving a date-time value for when the object was created. The value of this property ****MUST**** be a [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) compliant timestamp value.
-- `version` - The object ****MUST**** contain a `version` property. The value of this property ****MUST**** be a number. It is recommended that the value is a monotonic increasing integer value.
-- `topic` - The object ****MUST**** contain `topic` property. The value of this property ****MUST**** be a URI identifying the [[ref:Topic]] of the [[ref:Sentiment Declaration]].
+- `id` – The object ****MUST**** contain an `id` property. The value of this property ****MUST**** be a string. The string ****SHOULD**** provide a unique ID for the desired context. For example, a [UUID](https://tools.ietf.org/html/rfc4122) such as `32f54163-7166-48f1-93d8-ff217bdb0653` could provide an ID that is unique in a global context, while a simple string such as `my_trust_establishment-1` could be suitably unique in a local context.
+- `author` – The ****MUST**** contain an `id` property. The value of this property ****MUST**** be a string value representing the [[ref:DID]] of the author.
+- `created` – The object ****MUST**** contain a `created` property proving a date-time value for when the object was created. The value of this property ****MUST**** be a [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) compliant timestamp value.
+- `version` – The object ****MUST**** contain a `version` property. The value of this property ****MUST**** be a number. It is recommended that the value is a monotonic increasing integer value.
+- `topic` – The object ****MUST**** contain `topic` property. The value of this property ****MUST**** be a URI identifying the [[ref:Topic]] of the [[ref:Sentiment Declaration]].
 - `entries` – The object ****MUST**** contain a `entries` property which is a JSON map. and ****MUST**** be composed as a map as follows. 
-    - The `entries` object ****MUST**** have map keys as _string_ [ref:DID]]s which identify [[ref:Parties]] for which sentiment is being expressed. 
+    - The `entries` object ****MUST**** have map keys as _string_ [[ref:DID]]s which identify [[ref:Parties]] for which sentiment is being expressed. 
     - The `entries` object ****MUST**** have map values as JSON objects conforming to the [[ref:Schema]] listed in the `topic` property.
 
 ::: todo signing & verification
