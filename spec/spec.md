@@ -149,7 +149,7 @@ There is a base data model, along with document based adaptations that allow for
 
 There are several document representations aligned around specific organizations of data: _Topic Oriented_, _Entity Oriented_, _Entity Topic Oriented_, and _Set Oriented_. Each representation is optimized around a particular indexing vector, but all contain the necessary information to produce the base data model for each assertion.
 
-#### Example: Trust Establishment
+#### Example: Topic Oriented
 
 This pulls the _topic_ to the top of the document, and indexes properties by _entity_, where the _entity_ happens to be [[ref:DID]].
 
@@ -162,7 +162,7 @@ This pulls the _topic_ to the top of the document, and indexes properties by _en
   "created": "2010-01-01T19:23:24Z",
   "version": 2,
   "topic": "https://example.com/trusted-supplier.schema.json",
-  "entries": {
+  "entities": {
     "did:example:bob": {
       "on_time_percentage": 92,
       "goods": ["applewood", "hotel buffet style", "thick cut"]
@@ -189,7 +189,7 @@ This pulls the _entity_ to the top of the document, and indexes properties by _e
   "created": "2010-01-01T19:23:24Z",
   "version": 2,
   "entity": "did:example:bob",
-  "entries": {
+  "topics": {
     "https://example.com/trusted-supplier.schema.json": {
       "on_time_percentage": 92,
       "goods": ["applewood", "hotel buffet style", "thick cut"]
@@ -214,7 +214,7 @@ This document specifies neither _entity_ nor _topic_ at the document level, and 
   "author": "did:example:alice",
   "created": "2010-01-01T19:23:24Z",
   "version": 2,
-  "entries": {
+  "topics_by_entity": {
     "did:example:bob": {
       "https://example.com/trusted-supplier.schema.json":{
         "on_time_percentage": 92,
@@ -242,7 +242,7 @@ This document specifies neither _entity_ nor _topic_ at the document level, and 
 
 This document specifies neither _entity_ nor _topic_ at the document level, and indexes by _entity_, then _topic_.
 
-::: example Entity Topic Oriented
+::: example Topic Entity Oriented
 
 ```json
 {
@@ -250,7 +250,7 @@ This document specifies neither _entity_ nor _topic_ at the document level, and 
   "author": "did:example:alice",
   "created": "2010-01-01T19:23:24Z",
   "version": 2,
-  "entries": {
+  "entities_by_topic": {
     "https://example.com/trusted-supplier.schema.json": {
       "did:example:bob": {
         "on_time_percentage": 92,
@@ -287,7 +287,7 @@ This document specifies neither _entity_ nor _topic_ at the document level, and 
   "author": "did:example:alice",
   "created": "2010-01-01T19:23:24Z",
   "version": 2,
-  "entries": [
+  "set": [
     {
       "schema": "https://example.com/trusted-supplier.schema.json",
       "entity": "did:example:bob",
