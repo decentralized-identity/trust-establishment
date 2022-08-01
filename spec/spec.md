@@ -178,7 +178,7 @@ This pulls the _topic_ to the top of the document, and indexes properties by _en
 
 #### Example: Entity Oriented
 
-This pulls the _topic_ and _entity_ to the top of the document, and indexes properties by _entity_, where the _entity_ happens to be a [[ref:Schema]].
+This pulls the _entity_ to the top of the document, and indexes properties by _entity_, where the _entity_ happens to be a [[ref:Schema]].
 
 ::: example Entity Oriented
 
@@ -238,10 +238,46 @@ This document specifies neither _entity_ nor _topic_ at the document level, and 
 ```
 :::
 
+#### Example: Topic Entity Oriented
+
+This document specifies neither _entity_ nor _topic_ at the document level, and indexes by _entity_, then _topic_.
+
+::: example Entity Topic Oriented
+
+```json
+{
+  "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
+  "author": "did:example:alice",
+  "created": "2010-01-01T19:23:24Z",
+  "version": 2,
+  "entries": {
+    "https://example.com/trusted-supplier.schema.json": {
+      "did:example:bob": {
+        "on_time_percentage": 92,
+        "goods": ["applewood", "hotel buffet style", "thick cut"]
+      },
+      "did:example:carol": {
+        "on_time_percentage": 74,
+        "goods": ["oinkys", "porkys", "wilburs"]
+      }
+    },
+    "https://example.com/other.schema.json":{
+      "did:example:bob": {
+        "foo": "bar"
+      },
+      "did:example:carol": {
+        "foo": "baz"
+      }
+    }
+  }
+}
+```
+:::
+
 
 #### Example: Set Oriented
 
-This document specifies neither _entity_ nor _topic_ at the document level, and indexes by _entity_, then _topic_.
+This document specifies neither _entity_ nor _topic_ at the document level, and lists base model structures inside _entity_.
 
 ::: example Set Oriented
 
