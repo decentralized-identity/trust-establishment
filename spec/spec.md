@@ -43,7 +43,7 @@ Credential, Assertion, Attestation, etc.
 ~ Refers to the [W3C specification](https://www.w3.org/TR/vc-data-model) of the Verifiable Credentials Data Model.
 
 [[def:Topic, Topics, Trust Topic]]
-~ A [[ref:Schema]]-driven document that gives purpose to a sentiment document. A topic can be anything: from the tangibly measurable (e.g. success rate of a business process) to the intangible (e.g. how one party feels about another).
+~ A [[ref:Schema]]-driven document that gives purpose to a trust document. A topic can be anything: from the tangibly measurable (e.g. success rate of a business process) to the intangible (e.g. how one party feels about another).
 
 [[def:Trust Establishment, Trust Establishment Document, Trust Establishment Documents]]
 ~ The process by which a [[ref:Party]] makes trust statements about a given [[ref:Party]] for a given [[ref:Topic]] using Trust Establishment Documents.
@@ -451,31 +451,43 @@ This document specifies neither _entity_ nor _topic_ at the document level, and 
   "nonce": "660!6345FSer",
   "vc": {
     "@context": [
-  	 "https://www.w3.org/2018/credentials/v1",
-  	 "https://www.w3.org/2018/credentials/examples/v1"
+      "https://www.w3.org/2018/credentials/v1",
+      "https://www.w3.org/2018/credentials/examples/v1"
     ],
-	 "type": ["VerifiableCredential", "TrustEstablishment", "TrustedSuppliers"],
-	 "credentialSubject": {
-	  "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
-	  "trustEstablishment": { 
-	  	"id": "32f54163-7166-48f1-93d8-ff217bdb0653",
-	  	"author": "did:example:alice",
-	  	"created": "2010-01-01T19:23:24Z",
-	  	"version": "0.0.3",
-	  	"topic": "https://example.com/trusted-supplier.schema.json",
-	  	"entries": {
-	      "did:example:bob": {
-	      	"on_time_percentage": 92,
-	        "goods": ["applewood", "hotel buffet style", "thick cut"]
-	      },
-	      "did:example:carol": {
-	      	"on_time_percentage": 74,
-	        "goods": ["oinkys", "porkys", "wilburs"]
-	      }
-	  	}
-	  }
+    "type": [
+      "VerifiableCredential",
+      "TrustEstablishment",
+      "TrustedSuppliers"
+    ],
+    "credentialSubject": {
+      "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+      "trustEstablishment": {
+        "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
+        "author": "did:example:alice",
+        "created": "2010-01-01T19:23:24Z",
+        "version": "0.0.3",
+        "topic": "https://example.com/trusted-supplier.schema.json",
+        "entries": {
+          "did:example:bob": {
+            "on_time_percentage": 92,
+            "goods": [
+              "applewood",
+              "hotel buffet style",
+              "thick cut"
+            ]
+          },
+          "did:example:carol": {
+            "on_time_percentage": 74,
+            "goods": [
+              "oinkys",
+              "porkys",
+              "wilburs"
+            ]
+          }
+        }
+      }
+    }
   }
- }
 }
 ```
 :::
@@ -495,8 +507,46 @@ The third component of the JWT, the signature in JWS form is not shown. You can 
 
 ### JSON Schema
 
-::: todo JSON Schema
-  Add JSON Schemas for all objects once the spec is a bit more solid.
+The [[ref:Trust Establishment]] specification adopts and defines the following [[ref:JSON Schema]] data format and processing variant, which implementers ****MUST**** support for evaluation of the portions of the specification that call for [[ref:JSON Schema]] validation: https://json-schema.org/draft/2020-12/json-schema-core.html
+
+#### Topic Oriented
+
+::: example Topic Oriented - Schema
+```json
+[[insert: ./schemas/topic-oriented.json]]
+```
+:::
+
+#### Entity Oriented
+
+::: example Entity Oriented - Schema
+```json
+[[insert: ./schemas/entity-oriented.json]]
+```
+:::
+
+#### Entity Topic Oriented
+
+::: example Entity Topic Oriented - Schema
+```json
+[[insert: ./schemas/entity-topic-oriented.json]]
+```
+:::
+
+#### Topic Entity Oriented
+
+::: example Topic Entity Oriented - Schema
+```json
+[[insert: ./schemas/topic-entity-oriented.json]]
+```
+:::
+
+#### Set Oriented
+
+::: example Set Oriented - Schema
+```json
+[[insert: ./schemas/set-oriented.json]]
+```
 :::
 
 ### Examples
