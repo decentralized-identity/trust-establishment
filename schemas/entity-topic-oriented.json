@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Trust Establishment - Topic Oriented",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "version": {
+      "type": "integer"
+    },
+    "topics_by_entity": {
+      "type": "object",
+      "patternProperties": {
+        "\\w+": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "id",
+    "author",
+    "created",
+    "version",
+    "topics_by_entity"
+  ],
+  "additionalProperties": false
+}

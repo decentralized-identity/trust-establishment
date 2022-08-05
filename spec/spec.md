@@ -43,7 +43,7 @@ Credential, Assertion, Attestation, etc.
 ~ Refers to the [W3C specification](https://www.w3.org/TR/vc-data-model) of the Verifiable Credentials Data Model.
 
 [[def:Topic, Topics, Trust Topic]]
-~ A [[ref:Schema]]-driven document that gives purpose to a sentiment document. A topic can be anything: from the tangibly measurable (e.g. success rate of a business process) to the intangible (e.g. how one party feels about another).
+~ A [[ref:Schema]]-driven document that gives purpose to a trust document. A topic can be anything: from the tangibly measurable (e.g. success rate of a business process) to the intangible (e.g. how one party feels about another).
 
 [[def:Trust Establishment, Trust Establishment Document, Trust Establishment Documents]]
 ~ The process by which a [[ref:Party]] makes trust statements about a given [[ref:Party]] for a given [[ref:Topic]] using Trust Establishment Documents.
@@ -88,26 +88,53 @@ Examples in this document use the Verifiable Credentials Data Model [[spec:VC-DA
 
 ## Data Model
 
-[[ref:Trust Establishment Documents]] are objects that articulate information a [[ref:Party]] publishes in order to share _assertions_ about a set of [[ref:DID]]-identified entities. [[ref:Issuers]], [[ref:Verifiers]], and [[ref:Holders]] may find utility in understanding a [[ref:Party]]'s assertions in making decisions in decentralized web interactions, some of which are covered in the [Usage](#usage) section.
+[[ref:Trust Establishment Documents]] are objects that articulate information a [[ref:Party]] publishes in order to share _assertions_ about a set of [[ref:DID]]-identified entities. [[ref:Issuers]], [[ref:Verifiers]], and [[ref:Holders]] may find utility in understanding a [[ref:Party]]'s assertions in making decisions in decentralized web interactions.
 
-There is a base data model, along with document based adaptations that allow for aspect oriented uses.
+There are several document representations aligned around specific organizations of data: _Topic Oriented_, _Entity Oriented_, _Entity Topic Oriented_, and _Set Oriented_. Each representation is optimized around a particular indexing vector, but all contain the necessary information to produce the base data model for each assertion.
 
 ### Base Model
 
+The following properties are for use at the top-level of any [[ref:Trust Establishment Document]].
+
+- `id` – The object ****MUST**** contain an `id` property. The value of this property ****MUST**** be a string. The string ****SHOULD**** provide a unique ID for the desired context. For example, a [UUID](https://tools.ietf.org/html/rfc4122) such as `32f54163-7166-48f1-93d8-ff217bdb0653` could provide an ID that is unique in a global context, while a simple string such as `my_trust_establishment-1` could be suitably unique in a local context.
+- `author` – The ****MUST**** contain an `id` property. The value of this property ****MUST**** be a string value representing the [[ref:DID]] of the author.
+- `created` – The object ****MUST**** contain a `created` property proving a date-time value for when the object was created. The value of this property ****MUST**** be a [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) compliant timestamp value.
+- `version` – The object ****MUST**** contain a `version` property. The value of this property ****MUST**** be a number. It is recommended that the value is a monotonic increasing integer value.
+
+There are four additional properties common to all Trust Establishment Documents. Depending on the specific formation, the properties are represented in different locations in the document:
+
+- `topic` - A URI property identifying the [[ref:Topic]] of a [[ref:Trust Establishment Document]].
+- `entity` - A URI property representing the identity of a party, often represented by a [[ref:DID]], for whom a statement of trust is being made.
+- `entries` - An object representing combinations of `topics` and `entities` for trust statements.
+
+::: example Base Model
+
 ```json
 {
-  "topic": "https://example.com/schema-uri.json" // schema uri
-  "entity": "did:example:subject", // subject did
-  // attributes as defined in the schema
-  "properties": { 
-    "sample": "property"
-  }
+  "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
+  "author": "did:example:alice",
+  "created": "2022-04-20T04:20:00Z",
+  "version": "0.0.3",
+  ...
+  // topics, entities, and entries below
 }
 ```
+:::
 
-#### Example: Trust Topic
+### Trust Topic
+
+::: todo text on topics
+what's a trust topic?
+:::
+
+
+A topic ****MUST**** be a [[ref:JSON Schema]] document that can be applied to any number of [[ref:Parties]] identified in the `entries` property of a [[ref:Trust Establishment Document]].
+
+
+**Example JSON Object**
 
 ::: example Trust Topic - Full Example
+
 ```json
 {
   "$id": "https://example.com/trusted-supplier.schema.json",
@@ -130,28 +157,20 @@ There is a base data model, along with document based adaptations that allow for
   "additionalProperties": false
 }
 ```
-:::
+::: 
 
-#### Example: Base Model
+### Formations
 
-::: example Base Model
-```json
-{
-  "schema": "https://example.com/trusted-supplier.schema.json",
-  "entity": "did:example:alice",
-  "properties": {
-    "on_time_percentage": 92,
-    "goods": ["applewood", "hotel buffet style", "thick cut"]
-  }
-}
-```
-:::
+Each formation builds off of the concepts outlined in the [Base Model](#base-model) and [Trust Topic](#trust-topic) sections of this specification. [[ref:JSON Schema]]s can be found for each formatoin in the [JSON Schema](#json-schema) section.
 
-There are several document representations aligned around specific organizations of data: _Topic Oriented_, _Entity Oriented_, _Entity Topic Oriented_, and _Set Oriented_. Each representation is optimized around a particular indexing vector, but all contain the necessary information to produce the base data model for each assertion.
-
-#### Example: Topic Oriented
+#### Formation 1: Topic Oriented
 
 This pulls the _topic_ to the top of the document, and indexes properties by _entity_, where the _entity_ happens to be [[ref:DID]].
+
+- `topic` – The object ****MUST**** contain a `topic` property. The value of this property ****MUST**** be a URI identifying the [[ref:Topic]] of the [[ref:Trust Establishment Document]].
+- `entries` – The object ****MUST**** contain an `entries` property which is a JSON map and ****MUST**** be composed as a map as follows. 
+    - The `entries` object ****MUST**** have map keys as _string_ [[ref:DID]]s which identify [[ref:Parties]] for which trust is being expressed. 
+    - The `entries` object ****MUST**** have map values as _JSON objects_ conforming to the [[ref:Schema]] listed in the `topic` property.
 
 ::: example Topic Oriented
 
@@ -176,9 +195,14 @@ This pulls the _topic_ to the top of the document, and indexes properties by _en
 ```
 :::
 
-#### Example: Entity Oriented
+#### Formation 2: Entity Oriented
 
 This pulls the _entity_ to the top of the document, and indexes properties by _entity_, where the _entity_ happens to be a [[ref:Schema]].
+
+- `entity` – The object ****MUST**** contain an `entity` property. The value of this property ****MUST**** be a [[ref:DID]] identifier for a given [[ref:Party]].
+- `topics` – The object ****MUST**** contain a `topics` property which is a _JSON map_ and ****MUST**** be composed as a map as follows. 
+    - The `topics` object ****MUST**** have map keys as _URIs_ identifying the [[ref:Topic]] of the [[ref:Trust Establishment Document]].
+    - The `topics` object ****MUST**** have map values as _JSON objects_ conforming to the associated [[ref:Schema]] key value.
 
 ::: example Entity Oriented
 
@@ -202,9 +226,15 @@ This pulls the _entity_ to the top of the document, and indexes properties by _e
 ```
 :::
 
-#### Example: Entity Topic Oriented
+#### Formation 3: Entity Topic Oriented
 
 This document specifies neither _entity_ nor _topic_ at the document level, and indexes by _entity_, then _topic_.
+
+- `topics_by_entity` – The object ****MUST**** contain a `topics_by_entity` property which is a _JSON map_ and ****MUST**** be composed as a map as follows. 
+    - The `topics_by_entity` object ****MUST**** have map keys as _string_ [[ref:DID]]s which identify [[ref:Parties]] for which trust is being expressed. 
+    - The `topics_by_entity` object ****MUST**** have map keys as _JSON objects_, containing _JSON maps_ and ****MUST**** be composed as follows:
+      - The nested map inside a `topics_by_entity` object's value ****MUST**** have map keys identifying the [[ref:Topic]] of the [[ref:Trust Establishment Document]].
+      - The nested map inside a `topics_by_entity` object's value ****MUST**** have map values as _JSON objects_ conforming to the associated [[ref:Schema]] key value.
 
 ::: example Entity Topic Oriented
 
@@ -238,9 +268,16 @@ This document specifies neither _entity_ nor _topic_ at the document level, and 
 ```
 :::
 
-#### Example: Topic Entity Oriented
+#### Formation 4: Topic Entity Oriented
 
 This document specifies neither _entity_ nor _topic_ at the document level, and indexes by _entity_, then _topic_.
+
+- `entities_by_topic` – The object ****MUST**** contain a `topics_by_entity` property which is a _JSON map_ and ****MUST**** be composed as a map as follows. 
+    - The `entities_by_topic` object ****MUST**** have map keys as _string_ values identifying the [[ref:Topic]] of the [[ref:Trust Establishment Document]]. 
+    - The `entities_by_topic` object ****MUST**** have map keys as _JSON objects_, containing _JSON maps_ and ****MUST**** be composed as follows:
+      - The nested map inside a `entities_by_topic` object's value ****MUST**** have map keys as [[ref:DID]]s which identify [[ref:Parties]] for which trust is being expressed. 
+      - The nested map inside a `entities_by_topic` object's value ****MUST**** have map values as _JSON objects_ conforming to the associated [[ref:Schema]] key of the parent `entity_by_topic` value.
+
 
 ::: example Topic Entity Oriented
 
@@ -275,9 +312,15 @@ This document specifies neither _entity_ nor _topic_ at the document level, and 
 :::
 
 
-#### Example: Set Oriented
+#### Formation 5: Set Oriented
 
 This document specifies neither _entity_ nor _topic_ at the document level, and lists base model structures inside _entity_.
+
+- `set` – The object ****MUST**** contain a `set` property which is a JSON map and ****MUST**** be composed as a _JSON array_ as follows:
+
+    - The `set` object ****MUST**** contain a `topic` property. This value ****MUST**** be a _string_ identifying the [[ref:Topic]] of the [[ref:Trust Establishment Document]]. 
+    - The `set` object ****MUST**** contain an `entity` property. This value ****MUST**** be a [[ref:DID]]s which identify [[ref:Parties]] for which trust is being expressed. 
+    - The `set` object ****MUST**** contain a `properties` property. This value ****MUST**** be a _JSON object_ conforming to the associated [[ref:Schema]] referenced in the corresponding `topic` property's value.
 
 ::: example Set Oriented
 
@@ -289,7 +332,7 @@ This document specifies neither _entity_ nor _topic_ at the document level, and 
   "version": 2,
   "set": [
     {
-      "schema": "https://example.com/trusted-supplier.schema.json",
+      "topic": "https://example.com/trusted-supplier.schema.json",
       "entity": "did:example:bob",
       "properties": {
         "on_time_percentage": 92,
@@ -297,14 +340,14 @@ This document specifies neither _entity_ nor _topic_ at the document level, and 
       }
     },
     {
-      "schema": "https://example.com/other.schema.json",
+      "topic": "https://example.com/other.schema.json",
       "entity": "did:example:bob",
       "properties": {
         "foo": "bar"
       }
     },
     {
-      "schema": "https://example.com/trusted-supplier.schema.json",
+      "topic": "https://example.com/trusted-supplier.schema.json",
       "entity": "did:example:carol",
       "properties": {
         "on_time_percentage": 74,
@@ -312,7 +355,7 @@ This document specifies neither _entity_ nor _topic_ at the document level, and 
       }
     },
     {
-      "schema": "https://example.com/other.schema.json",
+      "topic": "https://example.com/other.schema.json",
       "entity": "did:example:carol",
       "properties": {
         "foo": "baz"
@@ -323,87 +366,12 @@ This document specifies neither _entity_ nor _topic_ at the document level, and 
 ```
 :::
 
-### Topic Composition
 
-::: todo text on topics
-what's a trust topic?
-:::
-
-
-A topic ****MUST**** be a [[ref:JSON Schema]] document that can be applied to any number of [[ref:Parties]] identified in the `entries` property of a [[ref:Trust Establishment Document]].
-
-
-**Example JSON Object**
-
-```json
-{
-  "$id": "https://example.com/trusted-supplier.schema.json",
-  "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "title": "Supplier Trust",
-  "type": "object",
-  "properties": {
-    "on_time_percentage": {
-      "type": "number",
-      "min": 0,
-      "max": 100
-    },
-    "goods": {
-      "type": "array",
-      "items": {
-        "format": "string"
-      }
-    }
-  },
-  "additionalProperties": false
-}
-```
-
-### Trust Establishment Document Composition
-
-::: todo text on trust establishment documents
-what's a trust establishment document?
-:::
-
-The following properties are for use at the top-level of a [[ref:Trust Establishment Document]]. Any properties that are not defined below ****MUST**** be ignored.
-
-- `id` – The object ****MUST**** contain an `id` property. The value of this property ****MUST**** be a string. The string ****SHOULD**** provide a unique ID for the desired context. For example, a [UUID](https://tools.ietf.org/html/rfc4122) such as `32f54163-7166-48f1-93d8-ff217bdb0653` could provide an ID that is unique in a global context, while a simple string such as `my_trust_establishment-1` could be suitably unique in a local context.
-- `author` – The ****MUST**** contain an `id` property. The value of this property ****MUST**** be a string value representing the [[ref:DID]] of the author.
-- `created` – The object ****MUST**** contain a `created` property proving a date-time value for when the object was created. The value of this property ****MUST**** be a [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) compliant timestamp value.
-- `version` – The object ****MUST**** contain a `version` property. The value of this property ****MUST**** be a number. It is recommended that the value is a monotonic increasing integer value.
-- `topic` – The object ****MUST**** contain `topic` property. The value of this property ****MUST**** be a URI identifying the [[ref:Topic]] of the [[ref:Sentiment Declaration]].
-- `entries` – The object ****MUST**** contain a `entries` property which is a JSON map. and ****MUST**** be composed as a map as follows. 
-    - The `entries` object ****MUST**** have map keys as _string_ [[ref:DID]]s which identify [[ref:Parties]] for which sentiment is being expressed. 
-    - The `entries` object ****MUST**** have map values as JSON objects conforming to the [[ref:Schema]] listed in the `topic` property.
-
-::: todo signing & verification
-how is the integrity of sentiment declarations maintained?
-:::
-
-```json
-{
-  "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
-  "author": "did:example:alice",
-  "created": "2010-01-01T19:23:24Z",
-  "version": "0.0.3",
-  "topic": "https://example.com/trusted-supplier.schema.json",
-  "entries": {
-    "did:example:bob": {
-      "on_time_percentage": 92,
-      "goods": ["applewood", "hotel buffet style", "thick cut"]
-    },
-    "did:example:carol": {
-      "on_time_percentage": 74,
-      "goods": ["oinkys", "porkys", "wilburs"]
-    }
-  }
-}
-```
-
-### Document Integrity
+## Document Integrity
 
 [[ref:Trust Establishment Documents] may fit into any number of embed targets – verifiable wrappers or embedded proofing formats - to enable data integrity. This specification takes no position on which means are suitable to provide integrity of [[ref:Trust Establishment Documents]] or [[ref:Topics]], however provide a number of examples for convenience:
 
-#### Verifiable Credential
+### Verifiable Credential
 
 **Linked Data Proof Verifiable Credential Trust Establishment Document**
 
@@ -454,7 +422,7 @@ how is the integrity of sentiment declarations maintained?
 :::
 
 
-#### JSON Web Token (JWT)
+### JSON Web Token (JWT)
 
 **JWT-VC Verifiable Credential Trust Establishment Document**
 
@@ -483,31 +451,43 @@ how is the integrity of sentiment declarations maintained?
   "nonce": "660!6345FSer",
   "vc": {
     "@context": [
-  	 "https://www.w3.org/2018/credentials/v1",
-  	 "https://www.w3.org/2018/credentials/examples/v1"
+      "https://www.w3.org/2018/credentials/v1",
+      "https://www.w3.org/2018/credentials/examples/v1"
     ],
-	 "type": ["VerifiableCredential", "TrustEstablishment", "TrustedSuppliers"],
-	 "credentialSubject": {
-	  "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
-	  "trustEstablishment": { 
-	  	"id": "32f54163-7166-48f1-93d8-ff217bdb0653",
-	  	"author": "did:example:alice",
-	  	"created": "2010-01-01T19:23:24Z",
-	  	"version": "0.0.3",
-	  	"topic": "https://example.com/trusted-supplier.schema.json",
-	  	"entries": {
-	      "did:example:bob": {
-	      	"on_time_percentage": 92,
-	        "goods": ["applewood", "hotel buffet style", "thick cut"]
-	      },
-	      "did:example:carol": {
-	      	"on_time_percentage": 74,
-	        "goods": ["oinkys", "porkys", "wilburs"]
-	      }
-	  	}
-	  }
+    "type": [
+      "VerifiableCredential",
+      "TrustEstablishment",
+      "TrustedSuppliers"
+    ],
+    "credentialSubject": {
+      "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
+      "trustEstablishment": {
+        "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
+        "author": "did:example:alice",
+        "created": "2010-01-01T19:23:24Z",
+        "version": "0.0.3",
+        "topic": "https://example.com/trusted-supplier.schema.json",
+        "entries": {
+          "did:example:bob": {
+            "on_time_percentage": 92,
+            "goods": [
+              "applewood",
+              "hotel buffet style",
+              "thick cut"
+            ]
+          },
+          "did:example:carol": {
+            "on_time_percentage": 74,
+            "goods": [
+              "oinkys",
+              "porkys",
+              "wilburs"
+            ]
+          }
+        }
+      }
+    }
   }
- }
 }
 ```
 :::
@@ -517,15 +497,67 @@ The third component of the JWT, the signature in JWS form is not shown. You can 
 :::
 
 
-## Usage
+## Appendix
 
-### Usage #1 – Sentiment Declaration
+### Topic Registry
+
+::: todo Topic Registry
+  Create a place for topics to be registered.
+:::
+
+### JSON Schema
+
+The [[ref:Trust Establishment]] specification adopts and defines the following [[ref:JSON Schema]] data format and processing variant, which implementers ****MUST**** support for evaluation of the portions of the specification that call for [[ref:JSON Schema]] validation: https://json-schema.org/draft/2020-12/json-schema-core.html
+
+#### Topic Oriented
+
+::: example Topic Oriented - Schema
+```json
+[[insert: ./schemas/topic-oriented.json]]
+```
+:::
+
+#### Entity Oriented
+
+::: example Entity Oriented - Schema
+```json
+[[insert: ./schemas/entity-oriented.json]]
+```
+:::
+
+#### Entity Topic Oriented
+
+::: example Entity Topic Oriented - Schema
+```json
+[[insert: ./schemas/entity-topic-oriented.json]]
+```
+:::
+
+#### Topic Entity Oriented
+
+::: example Topic Entity Oriented - Schema
+```json
+[[insert: ./schemas/topic-entity-oriented.json]]
+```
+:::
+
+#### Set Oriented
+
+::: example Set Oriented - Schema
+```json
+[[insert: ./schemas/set-oriented.json]]
+```
+:::
+
+### Examples
+
+#### Topic Oriented
+
+**Example #1 - Sentiment Declaration**
 
 Sentiment Declaration is a usage of the [[ref:Trust Establishment]] data model that provides a means by which an [[ref:Entity]] communicates their sentiment (what they may feel or think) for a [[ref:Topic]] about a set of [[ref:Parties]]. Sentiment Declaration is intended to be informational, and the prescription of any resulting actions taken based on the contents of the document are out of scope of this specification.
 
-**Sentiment Declaration Example: My Faves**
-
-The year is 2007 and your pink-colored mobile carrier announces a program to let you make unlimited calls and texts to five contacts of your choosing: your faves. Using the [[ref:Trust Establishment]] specification, you create a [[ref:JSON Schema]] [[ref:Topic]] that supports you enumerating your faves.
+As an example, we think of "My Faves". The year is 2007 and your pink-colored mobile carrier announces a program to let you make unlimited calls and texts to five contacts of your choosing: your faves. Using the [[ref:Trust Establishment]] specification, you create a [[ref:JSON Schema]] [[ref:Topic]] that supports you enumerating your faves.
 
 ::: example Sentiment of "My Faves" :::
 
@@ -539,8 +571,8 @@ The year is 2007 and your pink-colored mobile carrier announces a program to let
     "faves": {
       "type": "array",
       "items": {
-      	"type": "string",
-      	"pattern": "^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"
+        "type": "string",
+        "pattern": "^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"
       },
       "minItems": 1,
       "maxItems": 5
@@ -576,7 +608,7 @@ Next, you take the "My Faves" schema, and put it in a Trust Establishment docume
 
 You may imagine your carrier similarly using the "My Faves" schema to enumerate favs for all customers, each a separate entity within the [[ref:Trust Establishment Document]].
 
-### Usage #2 – Trusted Issuers
+**Example #2 – Trusted Issuers**
 
 A common usage of [[ref:Trust Establishment Documents]] is by a [[ref:Verifier]] wishing to provide information on which [[ref:Credentials]] they accept from which [[ref:Issuers]]. Using [[ref:Verifiable Credentials]] we know that a given Credential may have a signle schema, but also may reference multiple schemas or `type` documents for the same Credential. Using a "Trusted Issuers for Credential" topic, we can fulfill this use case.
 
@@ -592,7 +624,7 @@ A common usage of [[ref:Trust Establishment Documents]] is by a [[ref:Verifier]]
     "credential": {
       "type": "array",
       "items": {
-      	"type": "string",
+        "type": "string",
       },
       "minItems": 1
     }
@@ -628,78 +660,36 @@ Next, you take the "Trusted Issuers For Credential" schema, and put it in a Trus
 
 :::
 
+#### Entity Oriented
 
-### Usage #3 – Trusted Credentials
+**Example 1 - ???**
 
-Expanding on the previous example, it is also conceivable for an issuer to want to use [[ref:Trust Establishment]] to create a single, larger document, that encapsulates multiple credentials for multiple issuers. Since [[ref:Topics]] can be as flexible as [[ref:JSON Schema]] allows, this is again possible:
-
-::: example Multiple Trusted Issuers for Multiple Credentials
-
-```json
-{
-  "$id": "https://example.com/multiple-trusted-issuers-for-multiple-credentials.schema.json",
-  "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "title": "Multiple Trusted Issuers for Multiple Credentials",
-  "type": "object",
-  "properties": {
-    "credentials": {
-      "type": "object"
-    }
-  },
-  "required": ["credentials"],
-  "additionalProperties": false
-}
-```
-
+:::todo
+  Entity Oriented Example
 :::
 
-As we can see below, Alice, identified by `did:example:alice` accepts a variety of credential types from a set of issuers. There is no requirement for overlap, or consistency outside the structure imposed by the [[ref:Topic]].
+#### Entity Topic Oriented
 
-::: example Trust Establishment using the "Multiple Trusted Issuers for Multiple Credentials" Topic
+**Example 1 - ???**
 
-```json
-{
-  "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
-  "author": "did:example:alice",
-  "created": "2010-01-01T19:23:24Z",
-  "version": "0.0.1",
-  "topic": "https://example.com/multiple-trusted-issuers-for-multiple-credentials.schema.json",
-  "entries": {
-    "did:example:bob": {
-      "credentials": {
-      	"memes": ["example.com/dank-meme.schema.json", "example.com/danker-meme.schema.json"],
-      	"degrees": ["example.com/bachelors-degree.schema.json", "example.com/masters-degree.schema.json"]
-      }
-    },
-    "did:example:carol": {
-       "credentials": {
-       	"employment": ["example.com/employment.schema.json", "example.com/eu-employment.schema.json.ld"],
-       	"artist": ["example.com/oil-canvas.schema.json", "example.com/crayons.schema.json.ld"]
-       }
-    }
-  }
-}
-```
+:::todo
+  Entity Topic Oriented Example
 :::
 
-## Appendix
+#### Topic Entity Oriented
 
-### Topic Registry
+**Example 1 - ???**
 
-::: todo Topic Registry
-  Create a place for topics to be registered.
+:::todo
+  Topic Entity Oriented Example
 :::
 
-### JSON Schema
+#### Set Oriented
 
-::: todo JSON Schema
-  Add JSON Schemas for all objects once the spec is a bit more solid.
-:::
+**Example 1 - ???**
 
-### Examples
-
-::: todo Examples
-  Add examples of different configurations, multiple proof formats.
+:::todo
+  Set Oriented Example
 :::
 
 ## References
