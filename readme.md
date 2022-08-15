@@ -12,6 +12,10 @@ Trust in the decentralized space is a wide problem that many have tried to solve
 
 Thus far, we've come up with [two specs](./spec) to address these questions. It's likely there are more to come.
 
+## Prior Art
+
+We're not the first ones in the space to attempt to solve this problem! We've included a [Prior Art](./prior-art) that attempts to note related preceeding efforts.
+
 # Resources
 
 Meetings are held every Monday from 10 to 10:30 AM PT, 6 to 6:30 PM GMT. Information can be found on the [DIF Calendar](https://bit.ly/dif-calendar).
