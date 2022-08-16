@@ -1,0 +1,17 @@
+{
+  "$id": "https://example.com/trusted-issuers-for-credential.schema.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "title": "Trusted Issuers for Credential",
+  "type": "object",
+  "properties": {
+    "credential": {
+      "type": "array",
+      "items": {
+        "type": "string",
+      },
+      "minItems": 1
+    }
+  },
+  "required": ["credential"],
+  "additionalProperties": false
+}

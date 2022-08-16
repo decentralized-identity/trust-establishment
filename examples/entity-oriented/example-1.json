@@ -1,0 +1,32 @@
+{
+  "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
+  "author": "did:example:alice",
+  "created": "2010-01-01T19:23:24Z",
+  "version": 3,
+  "entity": "did:example:alice",
+  "topics": {
+    "https://example.com/favorite-restaurants.schema.json": {
+      "names": [
+        "Web 5 Guys",
+        "Slow Foods Inc",
+        "Burger Queen"
+      ]
+    },
+    "https://example.com/favorite-clothes-colors.schema.json": {
+      "clothes": {
+        "shirts": [
+          "blue",
+          "green",
+          "purple"
+        ],
+        "pants": [
+          "yellow",
+          "turqouise"
+        ],
+        "socks": [
+          "white"
+        ]
+      }
+    }
+  }
+}

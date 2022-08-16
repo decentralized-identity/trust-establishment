@@ -562,25 +562,7 @@ As an example, we think of "My Faves". The year is 2007 and your pink-colored mo
 ::: example Sentiment of "My Faves" :::
 
 ```json
-{
-  "$id": "https://example.com/my-faves.schema.json",
-  "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "title": "My Faves",
-  "type": "object",
-  "properties": {
-    "faves": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "pattern": "^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"
-      },
-      "minItems": 1,
-      "maxItems": 5
-    }
-  },
-  "required": ["faves"],
-  "additionalProperties": false
-}
+[[insert: ./examples/topic-oriented/example-1-schema.json]]
 ```
 
 :::
@@ -590,18 +572,7 @@ Next, you take the "My Faves" schema, and put it in a Trust Establishment docume
 ::: example Trust Establishment Sentiment using the "My Faves" Topic
 
 ```json
-{
-  "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
-  "author": "did:example:alice",
-  "created": "2010-01-01T19:23:24Z",
-  "version": "0.0.1",
-  "topic": "https://example.com/my-faves.schema.json",
-  "entries": {
-    "did:phone:1234567890": {
-      "faves": ["1-888-867-5309", "1-603-413-4124", "1-605-475-6960", "1-605-475-6968", "911"]
-    }
-  }
-}
+[[insert: ./examples/topic-oriented/example-1.json]]
 ```
 
 :::
@@ -615,23 +586,7 @@ A common usage of [[ref:Trust Establishment Documents]] is by a [[ref:Verifier]]
 ::: example Trusted Issuers for Credential :::
 
 ```json
-{
-  "$id": "https://example.com/trusted-issuers-for-credential.schema.json",
-  "$schema": "https://json-schema.org/draft/2019-09/schema",
-  "title": "Trusted Issuers for Credential",
-  "type": "object",
-  "properties": {
-    "credential": {
-      "type": "array",
-      "items": {
-        "type": "string",
-      },
-      "minItems": 1
-    }
-  },
-  "required": ["credential"],
-  "additionalProperties": false
-}
+[[insert: ./examples/topic-oriented/example-2-schema.json]]
 ```
 
 :::
@@ -641,55 +596,59 @@ Next, you take the "Trusted Issuers For Credential" schema, and put it in a Trus
 ::: example Trust Establishment using the "Trusted Issuers for Credential" Topic
 
 ```json
-{
-  "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
-  "author": "did:example:alice",
-  "created": "2010-01-01T19:23:24Z",
-  "version": "0.0.1",
-  "topic": "https://example.com/trusted-issuers-for-credential.schema.json",
-  "entries": {
-    "did:example:bob": {
-      "credentials": ["example.com/dank-meme.schema.json", "example.com/danker-meme.schema.json"]
-    },
-    "did:example:carol": {
-       "credentials": ["example.com/dankest-meme.schema.json", "example.com/dankest-meme.schema.json.ld"]
-    }
-  }
-}
+[[insert: ./examples/topic-oriented/example-2.json]]
 ```
 
 :::
 
 #### Entity Oriented
 
-**Example 1 - ???**
+**Example 1 - Multiple Topics for Entity**
 
-:::todo
-  Entity Oriented Example
+Alice is publishing a list about herself, sharing information that could be used in interactions with her.
+
+::: example Entity Oriented Example
+  ```json
+[[insert: ./examples/entity-oriented/example-1.json]]
+```
 :::
+
 
 #### Entity Topic Oriented
 
-**Example 1 - ???**
+**Example 1 - Government Flight Regulations**
 
-:::todo
-  Entity Topic Oriented Example
+In this example, the government identified by `did:example:government` is authoring a document showing for which airlines (the given entities) the qualifications needed for each of their pilots: information about a requisite flight school and medical report.
+
+::: example Entity Topic Oriented Example
+  ```json
+[[insert: ./examples/entity-topic-oriented/example-1.json]]
+```
 :::
 
 #### Topic Entity Oriented
 
-**Example 1 - ???**
+**Example 1 - Accepted University Degrees**
 
-:::todo
-  Topic Entity Oriented Example
+In this example, the author is an employer identified by `did:example:employer-1` who is listing which degrees they are willing to accept for applicants from a set of universities.
+
+::: example Topic Entity Oriented Example
+  ```json
+[[insert: ./examples/topic-entity-oriented/example-1.json]]
+```
 :::
+
 
 #### Set Oriented
 
-**Example 1 - ???**
+**Example 1 - Pizza Store**
 
-:::todo
-  Set Oriented Example
+A piza store, identified by `did:example:round-n-proud` is publishing a list of their chosen vendors, including which products they are willing to purchase for each vendor. This is useful for the vendors, and fans of _Round n' Proud_ everywhere that want to try to re-create the pizza at home.
+
+::: example Set Oriented Example
+  ```json
+[[insert: ./examples/set-oriented/example-1.json]]
+```
 :::
 
 ## References
