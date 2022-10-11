@@ -2,6 +2,7 @@
   "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
   "author": "did:example:alice",
   "created": "2010-01-01T19:23:24Z",
+  "validFrom": "2010-01-01T19:23:24Z",
   "version": "0.0.1",
   "topic": "https://example.com/trusted-issuers-for-credential.schema.json",
   "entries": {
