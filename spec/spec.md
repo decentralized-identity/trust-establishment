@@ -99,6 +99,8 @@ The following properties are for use at the top-level of any [[ref:Trust Establi
 - `id` – The object ****MUST**** contain an `id` property. The value of this property ****MUST**** be a string. The string ****SHOULD**** provide a unique ID for the desired context. For example, a [UUID](https://tools.ietf.org/html/rfc4122) such as `32f54163-7166-48f1-93d8-ff217bdb0653` could provide an ID that is unique in a global context, while a simple string such as `my_trust_establishment-1` could be suitably unique in a local context.
 - `author` – The ****MUST**** contain an `id` property. The value of this property ****MUST**** be a string value representing the [[ref:DID]] of the author.
 - `created` – The object ****MUST**** contain a `created` property proving a date-time value for when the object was created. The value of this property ****MUST**** be a [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) compliant timestamp value.
+- `validFrom` - The object ****MUST**** contain a `validFrom` property proving a date-time value for when the object is to be used. The value of this property ****MUST**** be a [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) compliant timestamp value.
+- `validUntil` - The object ****MAY**** contain a `validUntil` property proving a date-time value for when the object is no longer to be used. The value of this property ****MUST**** be a [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) compliant timestamp value.
 - `version` – The object ****MUST**** contain a `version` property. The value of this property ****MUST**** be a number. It is recommended that the value is a monotonic increasing integer value.
 
 There are four additional properties common to all Trust Establishment Documents. Depending on the specific formation, the properties are represented in different locations in the document:
@@ -179,6 +181,7 @@ This pulls the _topic_ to the top of the document, and indexes properties by _en
   "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
   "author": "did:example:alice",
   "created": "2010-01-01T19:23:24Z",
+  "validFrom": "2010-01-01T19:23:24Z",
   "version": 2,
   "topic": "https://example.com/trusted-supplier.schema.json",
   "entities": {
@@ -211,6 +214,8 @@ This pulls the _entity_ to the top of the document, and indexes properties by _e
   "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
   "author": "did:example:alice",
   "created": "2010-01-01T19:23:24Z",
+  "validFrom": "2010-01-01T19:23:24Z",
+  "validUntil": "2020-01-01T19:23:24Z",
   "version": 2,
   "entity": "did:example:bob",
   "topics": {
@@ -243,6 +248,8 @@ This document specifies neither _entity_ nor _topic_ at the document level, and 
   "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
   "author": "did:example:alice",
   "created": "2010-01-01T19:23:24Z",
+  "validFrom": "2010-01-01T19:23:24Z",
+  "validUntil": "2020-01-01T19:23:24Z",
   "version": 2,
   "topics_by_entity": {
     "did:example:bob": {
@@ -286,6 +293,8 @@ This document specifies neither _entity_ nor _topic_ at the document level, and 
   "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
   "author": "did:example:alice",
   "created": "2010-01-01T19:23:24Z",
+  "validFrom": "2010-01-01T19:23:24Z",
+  "validUntil": "2020-01-01T19:23:24Z",
   "version": 2,
   "entities_by_topic": {
     "https://example.com/trusted-supplier.schema.json": {
@@ -329,6 +338,7 @@ This document specifies neither _entity_ nor _topic_ at the document level, and 
   "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
   "author": "did:example:alice",
   "created": "2010-01-01T19:23:24Z",
+  "validFrom": "2010-01-01T19:23:24Z",
   "version": 2,
   "set": [
     {
