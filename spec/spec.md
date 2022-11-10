@@ -506,6 +506,15 @@ This document specifies neither _entity_ nor _topic_ at the document level, and 
 The third component of the JWT, the signature in JWS form is not shown. You can imagine it being a "third" component of the JWT above.
 :::
 
+## Publication & Discovery
+
+The publication of the JSON-based documents defined in this specification is a common activity 
+users of the specification will need to engage in for their expressions of trust and sentiment 
+to be discovered and digested by other parties. There are a number of ways to do this, but they 
+should account for the following core abilities:
+
+1. Enable Trust Establishment documents to be located via crawling a known set of DIDs (via Service Endpoints) or some other common routing mechanisms.
+2. Enable querying for all or some subset of Trust Establishment documents from a target entity via common DID-based data query/interaction protocols.
 
 ## Appendix
 
