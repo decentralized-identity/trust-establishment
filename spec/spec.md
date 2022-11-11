@@ -508,13 +508,20 @@ The third component of the JWT, the signature in JWS form is not shown. You can 
 
 ## Publication & Discovery
 
-The publication of the JSON-based documents defined in this specification is a common activity 
-users of the specification will need to engage in for their expressions of trust and sentiment 
-to be discovered and digested by other parties. There are a number of ways to do this, but they 
-should account for the following core abilities:
 
-1. Enable Trust Establishment documents to be located via crawling a known set of DIDs (via Service Endpoints) or some other common routing mechanisms.
-2. Enable querying for all or some subset of Trust Establishment documents from a target entity via common DID-based data query/interaction protocols.
+While specific recommendations for how to host, publish, and discover Trust Establishment documents is out of scope of this specification we can raise a number of points for consideration for its users.
+
+The publication of the JSON-based documents defined in this specification is a common activity users of the specification will need to engage in for their expressions of trust and sentiment to be discovered and digested by other parties. There are a number of ways to do this, but they should account for the following core abilities:
+
+1. Enable [[ref:Trust Establishment]] documents to be located via crawling a known set of DIDs (via [Service Endpoints](https://www.w3.org/TR/did-core/#services)) or some other common routing mechanisms.
+2. Enable querying for all or some subset of [[ref: Trust Establishment]] documents from a target entity via common DID-based data query/interaction protocols.
+
+There may be different motivations for interacting with [[ref:Trust Establishment]] documents. Across those motivations there are a common set of questions one may ask themselves before publishing, including:
+
+- Who are the intended consumers of this document, and how might they become aware of it?
+- Is this document going to be updated? If so, how are updates shared? How may consumers of older versions become aware that there is a more recent version?
+- Is hosting this document with a single party a risk: to availablility, privacy erosion, or censorship in some manner?
+- If I intend for this document to be replicated, how do I do that? Is there a way to incentivize other parties to replicate my documents?
 
 ## Appendix
 
