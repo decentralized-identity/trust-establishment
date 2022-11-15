@@ -163,7 +163,7 @@ A topic ****MUST**** be a [[ref:JSON Schema]] document that can be applied to an
 
 ### Formations
 
-Each formation builds off of the concepts outlined in the [Base Model](#base-model) and [Trust Topic](#trust-topic) sections of this specification. [[ref:JSON Schema]]s can be found for each formatoin in the [JSON Schema](#json-schema) section.
+Each formation builds off of the concepts outlined in the [Base Model](#base-model) and [Trust Topic](#trust-topic) sections of this specification. [[ref:JSON Schema]]s can be found for each formation in the [JSON Schema](#json-schema) section.
 
 #### Formation 1: Topic Oriented
 
@@ -184,7 +184,7 @@ This pulls the _topic_ to the top of the document, and indexes properties by _en
   "validFrom": "2010-01-01T19:23:24Z",
   "version": 2,
   "topic": "https://example.com/trusted-supplier.schema.json",
-  "entities": {
+  "entries": {
     "did:example:bob": {
       "on_time_percentage": 92,
       "goods": ["applewood", "hotel buffet style", "thick cut"]
@@ -279,8 +279,8 @@ This document specifies neither _entity_ nor _topic_ at the document level, and 
 
 This document specifies neither _entity_ nor _topic_ at the document level, and indexes by _entity_, then _topic_.
 
-- `entities_by_topic` – The object ****MUST**** contain a `topics_by_entity` property which is a _JSON map_ and ****MUST**** be composed as a map as follows. 
-    - The `entities_by_topic` object ****MUST**** have map keys as _string_ values identifying the [[ref:Topic]] of the [[ref:Trust Establishment Document]]. 
+- `entities_by_topic` – The object ****MUST**** contain a `entities_by_topic` property which is a _JSON map_ and ****MUST**** be composed as a map as follows. 
+    - The `entities_by_topic` object ****MUST**** have map keys as _string_ values identifying the [[ref:Topic]] of the [[ref:Trust Establishment Document]].
     - The `entities_by_topic` object ****MUST**** have map keys as _JSON objects_, containing _JSON maps_ and ****MUST**** be composed as follows:
       - The nested map inside a `entities_by_topic` object's value ****MUST**** have map keys as [[ref:DID]]s which identify [[ref:Parties]] for which trust is being expressed. 
       - The nested map inside a `entities_by_topic` object's value ****MUST**** have map values as _JSON objects_ conforming to the associated [[ref:Schema]] key of the parent `entity_by_topic` value.
