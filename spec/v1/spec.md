@@ -1,7 +1,7 @@
-Trust Establishment 0.0.1
+Trust Establishment 1.0.0
 ==================
 
-**Specification Status:** Strawman
+**Specification Status:** Draft
 
 **Latest Draft:**
   [identity.foundation/trust-establishment](https://identity.foundation/trust-establishment)
@@ -12,9 +12,9 @@ Trust Establishment 0.0.1
 ~ [Daniel Buchner](https://www.linkedin.com/in/dbuchner/) (Block)
 ~ [Mike Ebert](https://www.linkedin.com/in/michaelebert/) (Indicio)
 ~ [Sam Curren](https://www.linkedin.com/in/samcurren/) (Indicio)
-~ [Juan Caballero](https://www.linkedin.com/in/juan-caballero/) (Centre Consortium)
 
 **Contributors:**
+~ [Juan Caballero](https://www.linkedin.com/in/juan-caballero/) (Centre Consortium)
 
 **Participate:**
 ~ [GitHub repo](https://github.com/decentralized-identity/trust-establishment)
@@ -539,7 +539,7 @@ The [[ref:Trust Establishment]] specification adopts and defines the following [
 
 ::: example Topic Oriented - Schema
 ```json
-[[insert: ./schemas/topic-oriented.json]]
+[[insert: ./versions/v1/schemas/topic-oriented.json]]
 ```
 :::
 
@@ -547,7 +547,7 @@ The [[ref:Trust Establishment]] specification adopts and defines the following [
 
 ::: example Entity Oriented - Schema
 ```json
-[[insert: ./schemas/entity-oriented.json]]
+[[insert: ./versions/v1/schemas/entity-oriented.json]]
 ```
 :::
 
@@ -555,7 +555,7 @@ The [[ref:Trust Establishment]] specification adopts and defines the following [
 
 ::: example Entity Topic Oriented - Schema
 ```json
-[[insert: ./schemas/entity-topic-oriented.json]]
+[[insert: ./versions/v1/schemas/entity-topic-oriented.json]]
 ```
 :::
 
@@ -563,7 +563,7 @@ The [[ref:Trust Establishment]] specification adopts and defines the following [
 
 ::: example Topic Entity Oriented - Schema
 ```json
-[[insert: ./schemas/topic-entity-oriented.json]]
+[[insert: ./versions/v1/schemas/topic-entity-oriented.json]]
 ```
 :::
 
@@ -571,7 +571,7 @@ The [[ref:Trust Establishment]] specification adopts and defines the following [
 
 ::: example Set Oriented - Schema
 ```json
-[[insert: ./schemas/set-oriented.json]]
+[[insert: ./versions/v1/schemas/set-oriented.json]]
 ```
 :::
 
@@ -588,7 +588,7 @@ As an example, we think of "My Faves". The year is 2007 and your pink-colored mo
 ::: example Sentiment of "My Faves" :::
 
 ```json
-[[insert: ./examples/topic-oriented/example-1-schema.json]]
+[[insert: ./versions/v1/examples/topic-oriented/example-1-schema.json]]
 ```
 
 :::
@@ -598,7 +598,7 @@ Next, you take the "My Faves" schema, and put it in a Trust Establishment docume
 ::: example Trust Establishment Sentiment using the "My Faves" Topic
 
 ```json
-[[insert: ./examples/topic-oriented/example-1.json]]
+[[insert: ./versions/v1/examples/topic-oriented/example-1.json]]
 ```
 
 :::
@@ -612,7 +612,7 @@ A common usage of [[ref:Trust Establishment Documents]] is by a [[ref:Verifier]]
 ::: example Trusted Issuers for Credential :::
 
 ```json
-[[insert: ./examples/topic-oriented/example-2-schema.json]]
+[[insert: ./versions/v1/examples/topic-oriented/example-2-schema.json]]
 ```
 
 :::
@@ -622,7 +622,7 @@ Next, you take the "Trusted Issuers For Credential" schema, and put it in a Trus
 ::: example Trust Establishment using the "Trusted Issuers for Credential" Topic
 
 ```json
-[[insert: ./examples/topic-oriented/example-2.json]]
+[[insert: ./versions/v1/examples/topic-oriented/example-2.json]]
 ```
 
 :::
@@ -635,7 +635,7 @@ Alice is publishing a list about herself, sharing information that could be used
 
 ::: example Entity Oriented Example
   ```json
-[[insert: ./examples/entity-oriented/example-1.json]]
+[[insert: ./versions/v1/examples/entity-oriented/example-1.json]]
 ```
 :::
 
@@ -648,7 +648,7 @@ In this example, the government identified by `did:example:government` is author
 
 ::: example Entity Topic Oriented Example
   ```json
-[[insert: ./examples/entity-topic-oriented/example-1.json]]
+[[insert: ./versions/v1/examples/entity-topic-oriented/example-1.json]]
 ```
 :::
 
@@ -660,7 +660,7 @@ In this example, the author is an employer identified by `did:example:employer-1
 
 ::: example Topic Entity Oriented Example
   ```json
-[[insert: ./examples/topic-entity-oriented/example-1.json]]
+[[insert: ./versions/v1/examples/topic-entity-oriented/example-1.json]]
 ```
 :::
 
@@ -673,7 +673,7 @@ A piza store, identified by `did:example:round-n-proud` is publishing a list of 
 
 ::: example Set Oriented Example
   ```json
-[[insert: ./examples/set-oriented/example-1.json]]
+[[insert: ./versions/v1/examples/set-oriented/example-1.json]]
 ```
 :::
 
