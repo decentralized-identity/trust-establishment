@@ -504,8 +504,7 @@ The third component of the JWT, the signature in JWS form is not shown. You can 
 
 ## Publication & Discovery
 
-
-While specific recommendations for how to host, publish, and discover Trust Establishment documents is out of scope of this specification, we can raise a number of points for consideration for its users.
+While specific recommendations for how to host, publish, and discover Trust Establishment documents is out of scope of this specification we can raise a number of points for consideration for its users.
 
 The publication of the JSON-based documents defined in this specification is a common activity users of the specification will need to engage in for their expressions of trust and sentiment to be discovered and digested by other parties. There are a number of ways to do this, but they should account for the following core abilities:
 
@@ -514,10 +513,10 @@ The publication of the JSON-based documents defined in this specification is a c
 
 There may be different motivations for interacting with [[ref:Trust Establishment]] documents. Across those motivations there are a common set of questions one may ask themselves before publishing, including:
 
-1. Who are the intended consumers of this document, and how might they become aware of it?
-2. Is this document going to be updated? If so, how are updates shared? How may consumers of older versions become aware that there is a more recent version?
-3. Is hosting this document with a single party a risk: to availablility, privacy erosion, or censorship in some manner?
-4. If I intend for this document to be replicated, how do I do that? Is there a way to incentivize other parties to replicate my documents?
+- Who are the intended consumers of this document, and how might they become aware of it?
+- Is this document going to be updated? If so, how are updates shared? How may consumers of older versions become aware that there is a more recent version?
+- Is hosting this document with a single party a risk: to availablility, privacy erosion, or censorship in some manner?
+- If I intend for this document to be replicated, how do I do that? Is there a way to incentivize other parties to replicate my documents?
 
 ## Appendix
 
