@@ -398,10 +398,8 @@ This document specifies neither _entity_ nor _topic_ at the document level, and 
   "credentialSubject": {
     "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
     "trustEstablishment": { 
-    // Is this still needed?
 	  "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
 	  "author": "did:example:alice",
-    // Is this still needed?
 	  "created": "2010-01-01T19:23:24Z",
 	  "version": "0.0.3",
 	  "topic": "https://example.com/trusted-supplier.schema.json",
@@ -530,6 +528,10 @@ As per the section on [Publication & Discovery](#publication-discovery) there ar
 In the [DIF](https://identity.foundation), there are already some analagous registries such as the work item [Schema Directory](https://github.com/decentralized-identity/schema-directory/) which aims to host commonly used schemas such as those for defining Employment or KYC. It is possible to extend this registry to include _Trust Topics_, or create a new project if there is enough interest.
 
 Another project at DIF, [Decentralized Web Nodes](https://identity.foundation/decentralized-web-node/spec/), also provide the ability to host and address multiple types of data. Taking advantage of the [Collections interface](https://identity.foundation/decentralized-web-node/spec/#collections) it is possible to create a _Trust Topic Collection_ that is exposed via [Feature Detection](https://identity.foundation/decentralized-web-node/spec/#feature-detection), and given a public read [permission](https://identity.foundation/decentralized-web-node/spec/#permissions). This would allow anyone to interrogate a DWN, or network of DWNs, as to whether they have a Trust Topic Registry, and next, which Trust Topics they have access to.
+
+::: todo
+Add text on Trust Topic disocvery using DIDComm and other protocols.
+:::
 
 ### JSON Schema
 
