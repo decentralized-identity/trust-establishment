@@ -525,10 +525,11 @@ There may be different motivations for interacting with [[ref:Trust Establishmen
 
 ### Topic Registry
 
-::: todo Topic Registry
-  Create a place for topics to be registered.
-  The [schema directory](https://github.com/decentralized-identity/schema-directory/blob/main/content/schemas.md) seems like one place where schemas are registered, but I would also recommend adding a definition of what you mean by "registry" and ideally more than one example. __chair
-:::
+As per the section on [Publication & Discovery](#publication-discovery) there are a number of possibilities for hosting [[ref:Trust Establishment Documents]]. A related concept is defining a set of well-known [[ref:Topics]] that can find utility across an ecosystem of trust. One such option in housing these well-defined [[ref:Topics]] is a _Topic Registry_. Topic Registries can be as simple as [GitHub repositories](https://github.com/) that host a collection of topics or a website in a similar fashion to [Schema.org](https://schema.org/).
+
+In the [DIF](https://identity.foundation), there are already some analagous registries such as the work item [Schema Directory](https://github.com/decentralized-identity/schema-directory/) which aims to host commonly used schemas such as those for defining Employment or KYC. It is possible to extend this registry to include _Trust Topics_, or create a new project if there is enough interest.
+
+Another project at DIF, [Decentralized Web Nodes](https://identity.foundation/decentralized-web-node/spec/), also provide the ability to host and address multiple types of data. Taking advantage of the [Collections interface](https://identity.foundation/decentralized-web-node/spec/#collections) it is possible to create a _Trust Topic Collection_ that is exposed via [Feature Detection](https://identity.foundation/decentralized-web-node/spec/#feature-detection), and given a public read [permission](https://identity.foundation/decentralized-web-node/spec/#permissions). This would allow anyone to interrogate a DWN, or network of DWNs, as to whether they have a Trust Topic Registry, and next, which Trust Topics they have access to.
 
 ### JSON Schema
 
