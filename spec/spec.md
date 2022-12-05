@@ -163,6 +163,8 @@ A topic ****MUST**** be a [[ref:JSON Schema]] document that can be applied to an
 
 ### Formations
 
+A formation describes a way to structure a trust document. It can be thought of as a "formula" to build the document.
+
 Each formation builds off of the concepts outlined in the [Base Model](#base-model) and [Trust Topic](#trust-topic) sections of this specification. [[ref:JSON Schema]]s can be found for each formation in the [JSON Schema](#json-schema) section.
 
 #### Formation 1: Topic Oriented
