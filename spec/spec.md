@@ -62,8 +62,7 @@ Credential, Assertion, Attestation, etc.
 
 [[def:Verifier, Verifiers]]
 ~ Verifiers are entities that define what [[ref:Parties]] they accept a
-[[ref:Credential]] from in order to proceed with an
-an interaction.
+[[ref:Credential]] from in order to proceed with an interaction.
 
 [[def:Presentation, Present]]
 ~ Presentations are a type of verifiable interaction in which one [[ref:Party]] submits a [[ref:Claim]] or set of [[ref:Claims]] to a [[ref:Verifier]].
