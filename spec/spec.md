@@ -98,16 +98,16 @@ Examples in this document use the Verifiable Credentials Data Model [[spec:VC-DA
 - `validFrom` - The object ****MUST**** contain a `validFrom` property proving a date-time value for when the object is to be used. The value of this property ****MUST**** be a [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) compliant timestamp value.
 - `validUntil` - The object ****MAY**** contain a `validUntil` property proving a date-time value for when the object is no longer to be used. The value of this property ****MUST**** be a [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) compliant timestamp value.
 - `version` – The object ****MUST**** contain a `version` property. The value of this property ****MUST**** be a number. It is recommended that the value is a monotonic increasing integer value.
-- `entries` - The object ****MUST**** contain a `entries` property that representing combinations of `topics` and entities for trust statements. Its value ****MUST**** be a JSON object composed as follows:
+- `entries` - The object ****MUST**** contain a `entries` property that represents combinations of `topics` and entities for trust statements. Its value ****MUST**** be a JSON object composed as follows:
     - The object ****MUST**** have map keys as _string_ values identifying the [[ref:Topic]] of the [[ref:Trust Establishment Document]].
     ::: todo
     references a schema uri?
     :::
-    - The object ****MUST**** have map keys as _JSON objects_, containing _JSON maps_ and ****MUST**** be composed as follows:
+    - The object ****MUST**** have map values as _JSON objects_, containing _JSON maps_ and ****MUST**** be composed as follows:
       - ****MUST**** have map keys as [[ref:DID]]s which identify [[ref:Parties]] for which trust is being expressed. 
-      - ****MUST**** have map values as _JSON objects_ conforming to the associated [[ref:Schema]] key of the parent [[ref:Topic]] value.
+      - ****MUST**** have map values as _JSON objects_ conforming to the associated [[ref:Schema]] of the parent [[ref:Topic]] value.
 
-::: example Base Model
+::: example Data Model
 
 ```json
 {
@@ -276,23 +276,24 @@ A topic ****MUST**** be a [[ref:JSON Schema]] document that can be applied to an
         "author": "did:example:alice",
         "created": "2010-01-01T19:23:24Z",
         "version": "0.0.3",
-        "topic": "https://example.com/trusted-supplier.schema.json",
         "entries": {
-          "did:example:bob": {
-            "on_time_percentage": 92,
-            "goods": [
-              "applewood",
-              "hotel buffet style",
-              "thick cut"
-            ]
-          },
-          "did:example:carol": {
-            "on_time_percentage": 74,
-            "goods": [
-              "oinkys",
-              "porkys",
-              "wilburs"
-            ]
+          "https://example.com/trusted-supplier.schema.json": {
+            "did:example:bob": {
+              "on_time_percentage": 92,
+              "goods": [
+                "applewood",
+                "hotel buffet style",
+                "thick cut"
+              ]
+            },
+            "did:example:carol": {
+              "on_time_percentage": 74,
+              "goods": [
+                "oinkys",
+                "porkys",
+                "wilburs"
+              ]
+            }
           }
         }
       }
@@ -343,7 +344,7 @@ The [[ref:Trust Establishment]] specification adopts and defines the following [
 
 ### Examples
 
-**Example #1 - Sentiment Declaration**
+**Example 1 - Sentiment Declaration**
 
 Sentiment Declaration is a usage of the [[ref:Trust Establishment]] data model that provides a means by which an [[ref:Entity]] communicates their sentiment (what they may feel or think) for a [[ref:Topic]] about a set of [[ref:Parties]]. Sentiment Declaration is intended to be informational, and the prescription of any resulting actions taken based on the contents of the document are out of scope of this specification.
 
@@ -369,7 +370,7 @@ Next, you take the "My Faves" schema, and put it in a Trust Establishment docume
 
 You may imagine your carrier similarly using the "My Faves" schema to enumerate favs for all customers, each a separate entity within the [[ref:Trust Establishment Document]].
 
-**Example #2 – Trusted Issuers**
+**Example 2 – Trusted Issuers**
 
 A common usage of [[ref:Trust Establishment Documents]] is by a [[ref:Verifier]] wishing to provide information on which [[ref:Credentials]] they accept from which [[ref:Issuers]]. Using [[ref:Verifiable Credentials]] we know that a given Credential may have a signle schema, but also may reference multiple schemas or `type` documents for the same Credential. Using a "Trusted Issuers for Credential" topic, we can fulfill this use case.
 
