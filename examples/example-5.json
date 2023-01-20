@@ -5,7 +5,7 @@
   "validFrom": "2010-01-01T19:23:24Z",
   "validUntil": "2020-01-01T19:23:24Z",
   "version": 44,
-  "entities_by_topic": {
+  "entries": {
     "https://example.com/trusted-bachelors-degrees.schema.json": {
       "did:example:university-1": {
         "fields_of_study": ["Aerospace Engineering", "Scandanavian Literature", "Australian Sign Language"]

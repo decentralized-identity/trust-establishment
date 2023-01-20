@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Trust Establishment - Topic Oriented",
+  "title": "Trust Establishment",
   "type": "object",
   "properties": {
     "id": {
@@ -24,10 +24,7 @@
     "version": {
       "type": "integer"
     },
-    "entity": {
-      "type": "string"
-    },
-    "topics": {
+    "entries": {
       "type": "object",
       "patternProperties": {
         "\\w+:(\/?\/?)[^\\s]+": {
@@ -43,8 +40,7 @@
     "created",
     "validFrom",
     "version",
-    "entity",
-    "topics"
+    "entries"
   ],
   "additionalProperties": false
 }
