@@ -1,0 +1,32 @@
+{
+  "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
+  "author": "did:example:round-n-proud",
+  "created": "2010-01-01T19:23:24Z",
+  "validFrom": "2010-01-01T19:23:24Z",
+  "validUntil": "2020-01-01T19:23:24Z",
+  "version": 2,
+  "entries": {
+    "https://example.com/trusted-pepperoni-supplier.schema.json": {
+      "did:example:joes-salamis": {
+        "properties": {
+          "names": ["Pure Pork", "Pork & Beef Mix", "Cured To Perfection"]
+        }
+      }
+    },
+    "https://example.com/trusted-cheese-supplier.schema.json": {
+      "did:example:xtracheese": {
+        "properties": {
+          "mozzarella": ["Buffalo", "Stracciatella", "Nodini"],
+          "ricotta": ["Smoked", "Sheep's Milk", "Fresh"]
+        }
+      }
+    },
+    "https://example.com/trusted-tomato-supplier.schema.json": {
+      "did:example:offthevine": {
+        "properties": {
+          "tomatos": ["Cherry", "Roma", "Campari", "Better Boy"]
+        }
+      }
+    }
+  }
+}

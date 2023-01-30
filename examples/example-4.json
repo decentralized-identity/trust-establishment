@@ -5,16 +5,26 @@
   "validFrom": "2010-01-01T19:23:24Z",
   "validUntil": "2020-01-01T19:23:24Z",
   "version": 5,
-  "topics_by_entity": {
-    "did:example:airline-1": {
-      "https://example.com/trusted-flight-schools.schema.json": {
+  "entries": {
+    "https://example.com/trusted-flight-schools.schema.json": {
+      "did:example:airline-1": {
         "pass_rate": 88,
         "names": [
           "Top Gun Academy",
           "Jim's Good Enough School"
         ]
       },
-      "https://example.com/medical-reports.schema.json": {
+      "did:example:airline-2": {
+        "pass_rate": 88,
+        "names": [
+          "Winging It",
+          "Pretty Fly",
+          "Parachutes Not Included"
+        ]
+      }
+    },
+    "https://example.com/medical-reports.schema.json": {
+      "did:example:airline-1": {
         "state_certification": [
           "California",
           "Arizona",
@@ -24,22 +34,12 @@
           "99% Germ Free Facility",
           "Southern California's Finest Seal Hospital"
         ]
-      }
-    },
-    "did:example:airline-2": {
-      "https://example.com/trusted-flight-schools.schema.json": {
-        "pass_rate": 88,
-        "names": [
-          "Winging It",
-          "Pretty Fly",
-          "Parachutes Not Included"
-        ]
       },
-      "https://example.com/medical-reports.schema.json": {
+      "did:example:airline-2": {
         "state_certification": [
-          "New York",
-          "Colorado",
-          "Vermont"
+        "New York",
+        "Colorado",
+        "Vermont"
         ],
         "institutions": [
           "Swiss Cheese No More",
