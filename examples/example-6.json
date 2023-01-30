@@ -5,28 +5,28 @@
   "validFrom": "2010-01-01T19:23:24Z",
   "validUntil": "2020-01-01T19:23:24Z",
   "version": 2,
-  "set": [
-    {
-      "topic": "https://example.com/trusted-pepperoni-supplier.schema.json",
-      "entity": "did:example:joes-salamis",
-      "properties": {
-        "names": ["Pure Pork", "Pork & Beef Mix", "Cured To Perfection"]
+  "entries": {
+    "https://example.com/trusted-pepperoni-supplier.schema.json": {
+      "did:example:joes-salamis": {
+        "properties": {
+          "names": ["Pure Pork", "Pork & Beef Mix", "Cured To Perfection"]
+        }
       }
     },
-    {
-      "topic": "https://example.com/trusted-cheese-supplier.schema.json",
-      "entity": "did:example:xtracheese",
-      "properties": {
-        "mozzarella": ["Buffalo", "Stracciatella", "Nodini"],
-        "ricotta": ["Smoked", "Sheep's Milk", "Fresh"]
+    "https://example.com/trusted-cheese-supplier.schema.json": {
+      "did:example:xtracheese": {
+        "properties": {
+          "mozzarella": ["Buffalo", "Stracciatella", "Nodini"],
+          "ricotta": ["Smoked", "Sheep's Milk", "Fresh"]
+        }
       }
     },
-    {
-      "topic": "https://example.com/trusted-tomato-supplier.schema.json",
-      "entity": "did:example:offthevine",
-      "properties": {
-        "tomatos": ["Cherry", "Roma", "Campari", "Better Boy"],
+    "https://example.com/trusted-tomato-supplier.schema.json": {
+      "did:example:offthevine": {
+        "properties": {
+          "tomatos": ["Cherry", "Roma", "Campari", "Better Boy"]
+        }
       }
     }
-  ]
+  }
 }

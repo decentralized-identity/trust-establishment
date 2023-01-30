@@ -427,7 +427,7 @@ In this example, the author is an employer identified by `did:example:employer-1
 
 A piza store, identified by `did:example:round-n-proud` is publishing a list of their chosen vendors, including which products they are willing to purchase for each vendor. This is useful for the vendors, and fans of _Round n' Proud_ everywhere that want to try to re-create the pizza at home.
 
-::: example Set Oriented Example
+::: example
   ```json
 [[insert: ./examples/example-6.json]]
 ```
