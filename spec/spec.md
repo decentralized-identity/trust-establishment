@@ -28,7 +28,7 @@ Trust Establishment 0.0.1
 
 Trust in the decentralized identity space is a problem that many have tried to solve. This specification aims to take a piece of the problem around [[ref:Trust Establishment]]: a means by which an [[ref:Party]] communicates their assertions for a [[ref:Topic]] about a set of [[ref:Parties]]. [[ref:Trust Establishment]] is intended to be informational, though it can be used to prescribe resulting action. Not all potential usage will be covered in this specification.
 
-This specification describes only the data model of trust documents and is not opinionated on document integrity, format, publication, or discovery. Because of this, the specification alone cannot ensure interoperability and is recommended for use within one or more multi-layered Interoperability Profile(s) which specify protocol and integrity choices.
+This specification describes only the data model of trust documents and is not opinionated on document integrity, format, publication, or discovery. Because of this, the specification alone cannot ensure interoperability and is recommended for use within one or more multi-layered Interoperability Profile(s) which specify those implementation details.
 
 
 ## Status of This Document
