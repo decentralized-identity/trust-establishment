@@ -28,6 +28,9 @@ Trust Establishment 0.0.1
 
 Trust in the decentralized identity space is a problem that many have tried to solve. This specification aims to take a piece of the problem around [[ref:Trust Establishment]]: a means by which an [[ref:Party]] communicates their assertions for a [[ref:Topic]] about a set of [[ref:Parties]]. [[ref:Trust Establishment]] is intended to be informational, though it can be used to prescribe resulting action. Not all potential usage will be covered in this specification.
 
+This specification describes only the data model of trust documents and is not opinionated on document integrity, format, publication, or discovery. Because of this, the specification alone cannot ensure interoperability and is recommended for use within a Profile.
+
+
 ## Status of This Document
 
 Trust Establishment is a _STRAWMAN_ specification under development within the Decentralized Identity Foundation (DIF). It incorporates requirements and learning from related work of many active industry players into a shared specification that meets the collective needs of the community.
@@ -84,7 +87,7 @@ which provide information semantic meaning and classification for the data in a 
 ## Structure of this Document
 This document has two primary sections: In the first we describe the data models for [[ref:Topics]] and [[ref:Trust Establishment Documents]]. In the second, we cover some usage of [[ref: Trust Establishment Documents]].
 
-Examples in this document use the Verifiable Credentials Data Model [[spec:VC-DATA-MODEL]] and the [[spec:DID-CORE]] formats for illustrative purposes only; this specification is intended to support any JSON-serializable [[ref:Claim]] format.
+Examples in this document use the Verifiable Credentials Data Model [[spec:VC-DATA-MODEL]] and the [[spec:DID-CORE]] formats for illustrative purposes only; this specification is intended to support any JSON-serializable [[ref:Claim]] format and cannot alone ensure interoperability.
 
 ## Data Model
 
@@ -179,7 +182,11 @@ A topic ****MUST**** be a [[ref:JSON Schema]] document that can be applied to an
 
 ## Document Integrity
 
-[[ref:Trust Establishment Documents] may fit into any number of embed targets – verifiable wrappers or embedded proofing formats - to enable data integrity. This specification takes no position on which means are suitable to provide integrity of [[ref:Trust Establishment Documents]] or [[ref:Topics]], however provide a number of examples for convenience:
+[[ref:Trust Establishment Documents]] may fit into any number of embed targets – verifiable wrappers or embedded proofing formats - to enable data integrity. This specification takes no position on which means are suitable to provide integrity of [[ref:Trust Establishment Documents]] or [[ref:Topics]], however provide a number of examples for convenience.
+
+::: warning Interoperability Notice
+Interoperability of trust documents is not possible with this specification alone. Profiles must specify method(s) of document integrity to enable interoperability.
+:::
 
 ### Verifiable Credential
 
