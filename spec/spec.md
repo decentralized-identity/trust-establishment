@@ -103,9 +103,7 @@ Examples in this document use the Verifiable Credentials Data Model [[spec:VC-DA
 - `version` – The object ****MUST**** contain a `version` property. The value of this property ****MUST**** be a number. It is recommended that the value is a monotonic increasing integer value.
 - `entries` - The object ****MUST**** contain a `entries` property that represents combinations of `topics` and entities for trust statements. Its value ****MUST**** be a JSON object composed as follows:
     - The object ****MUST**** have map keys as _string_ values identifying the [[ref:Topic]] of the [[ref:Trust Establishment Document]].
-    ::: todo
-    references a schema uri?
-    :::
+
     - The object ****MUST**** have map values as _JSON objects_, containing _JSON maps_ and ****MUST**** be composed as follows:
       - ****MUST**** have map keys as [[ref:DID]]s which identify [[ref:Parties]] for which trust is being expressed. 
       - ****MUST**** have map values as _JSON objects_ conforming to the associated [[ref:Schema]] of the parent [[ref:Topic]] value.
@@ -143,11 +141,6 @@ Examples in this document use the Verifiable Credentials Data Model [[spec:VC-DA
 :::
 
 ### Trust Topic
-
-::: todo text on topics
-what's a trust topic?
-:::
-
 
 A topic ****MUST**** be a [[ref:JSON Schema]] document that can be applied to any number of [[ref:Parties]] identified in the `entries` property of a [[ref:Trust Establishment Document]].
 
@@ -334,12 +327,6 @@ There may be different motivations for interacting with [[ref:Trust Establishmen
 - If I intend for this document to be replicated, how do I do that? Is there a way to incentivize other parties to replicate my documents?
 
 ## Appendix
-
-### Topic Registry
-
-::: todo Topic Registry
-  Create a place for topics to be registered.
-:::
 
 ### JSON Schema
 
