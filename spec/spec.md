@@ -201,10 +201,8 @@ Interoperability is only possible between two implementations, each of which con
   "credentialSubject": {
     "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
     "trustEstablishment": { 
-    // Is this still needed?
 	  "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
 	  "author": "did:example:alice",
-    // Is this still needed?
 	  "created": "2010-01-01T19:23:24Z",
 	  "version": "0.0.3",
 	  "topic": "https://example.com/trusted-supplier.schema.json",
