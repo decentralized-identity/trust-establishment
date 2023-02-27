@@ -187,7 +187,7 @@ A topic ****MUST**** be a [[ref:JSON Schema]] document that can be applied to an
 ::: warning Interoperability Notice
 This specification details only a data model rather than a complete syntax and is therefore insufficient for coordinating interoperability across implementations. 
 
-Interoperability is only possible with the use of one or more Interoperability Profile(s) which fully specify the implementation details of document integrity, publication, and discovery. As such, this specification MUST not be referenced as either a requirement or an declaration of compatibility. The appropriate Interoperability Profile(s) MUST be referenced directly.
+Interoperability is only possible between two implementations, each of which conform to one or more Interoperability Profile(s) which fully specify the implementation details of document integrity, publication, and discovery supported for the other to target. Conformance to this low-level specification does not guarantee compatibility across implementations; instead, these higher-level Interoperability Profile(s) must be targeted.
 :::
 
 ### Verifiable Credential
