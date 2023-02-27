@@ -182,7 +182,7 @@ A topic ****MUST**** be a [[ref:JSON Schema]] document that can be applied to an
 
 ## Document Integrity
 
-[[ref:Trust Establishment Documents]] may fit into any number of embed targets – verifiable wrappers or embedded proofing formats - to enable data integrity. This specification takes no position on which means are suitable to provide integrity of [[ref:Trust Establishment Documents]] or [[ref:Topics]], however provide a number of examples for convenience.
+[[ref:Trust Establishment Documents]] may fit into any number of embed targets – verifiable wrappers or embedded proofing formats - to enable data integrity. This specification takes no position on which means are suitable to provide integrity of [[ref:Trust Establishment Documents]] or [[ref:Topics]]; the examples it provides should be taken as illustrative rather than normative in regards to those decisions at higher layers.
 
 ::: warning Interoperability Notice
 This specification details only a data model rather than a complete syntax and is therefore insufficient for coordinating interoperability across implementations. 
