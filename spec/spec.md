@@ -100,7 +100,7 @@ Examples in this document use the Verifiable Credentials Data Model [[spec:VC-DA
 - `created` – The object ****MUST**** contain a `created` property proving a date-time value for when the object was created. The value of this property ****MUST**** be a [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) compliant timestamp value.
 - `validFrom` - The object ****MUST**** contain a `validFrom` property proving a date-time value for when the object is to be used. The value of this property ****MUST**** be a [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) compliant timestamp value.
 - `validUntil` - The object ****MAY**** contain a `validUntil` property proving a date-time value for when the object is no longer to be used. The value of this property ****MUST**** be a [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) compliant timestamp value.
-- `version` – The object ****MAY**** contain a `version` property. If present, the value of this property ****MUST**** be a string that uniquely identifies the version of this document. 
+- `version` – The object ****MAY**** contain a `version` property. If present, the value of this property ****MUST**** be a string that uniquely identifies the instance of this document. 
 - `entries` - The object ****MUST**** contain a `entries` property that represents combinations of `topics` and entities for trust statements. Its value ****MUST**** be a JSON object composed as follows:
     - The object ****MUST**** have map keys as _string_ values identifying the [[ref:Topic]] of the [[ref:Trust Establishment Document]].
     - The object ****MUST**** have map values as _JSON objects_, containing _JSON maps_ and ****MUST**** be composed as follows:
