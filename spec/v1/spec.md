@@ -1,7 +1,7 @@
-Trust Establishment 0.0.1
+Trust Establishment 1.0.0
 ==================
 
-**Specification Status:** Strawman
+**Specification Status:** Draft
 
 **Latest Draft:**
   [identity.foundation/trust-establishment](https://identity.foundation/trust-establishment)
@@ -12,9 +12,9 @@ Trust Establishment 0.0.1
 ~ [Daniel Buchner](https://www.linkedin.com/in/dbuchner/) (Block)
 ~ [Mike Ebert](https://www.linkedin.com/in/michaelebert/) (Indicio)
 ~ [Sam Curren](https://www.linkedin.com/in/samcurren/) (Indicio)
-~ [Juan Caballero](https://www.linkedin.com/in/juan-caballero/) (Centre Consortium)
 
 **Contributors:**
+~ [Juan Caballero](https://www.linkedin.com/in/juan-caballero/) (Centre Consortium)
 ~ [Jen Schreiber](https://www.linkedin.com/in/jischr/) (Workday)
 
 **Participate:**
@@ -96,7 +96,7 @@ Examples in this document use the Verifiable Credentials Data Model [[spec:VC-DA
 ### Properties
 
 - `id` – The object ****MUST**** contain an `id` property. The value of this property ****MUST**** be a string. The string ****SHOULD**** provide a unique ID for the desired context. For example, a [UUID](https://tools.ietf.org/html/rfc4122) such as `32f54163-7166-48f1-93d8-ff217bdb0653` could provide an ID that is unique in a global context, while a simple string such as `my_trust_establishment-1` could be suitably unique in a local context.
-- `author` – The ****MUST**** contain an `id` property. The value of this property ****MUST**** be a string value representing the [[ref:DID]] of the author.
+- `author` – The object ****MUST**** contain an `author` property. The value of this property ****MUST**** be a string value representing the [[ref:DID]] of the author.
 - `created` – The object ****MUST**** contain a `created` property proving a date-time value for when the object was created. The value of this property ****MUST**** be a [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) compliant timestamp value.
 - `validFrom` - The object ****MUST**** contain a `validFrom` property proving a date-time value for when the object is to be used. The value of this property ****MUST**** be a [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) compliant timestamp value.
 - `validUntil` - The object ****MAY**** contain a `validUntil` property proving a date-time value for when the object is no longer to be used. The value of this property ****MUST**** be a [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339) compliant timestamp value.
@@ -331,7 +331,7 @@ The [[ref:Trust Establishment]] specification adopts and defines the following [
 
 :::
 ```json
-[[insert: ./schemas/schema.json]]
+[[insert: ./versions/v1/schemas/schema.json]]
 ```
 :::
 
@@ -346,7 +346,7 @@ As an example, we think of "My Faves". The year is 2007 and your pink-colored mo
 ::: example Sentiment of "My Faves" :::
 
 ```json
-[[insert: ./examples/example-1-schema.json]]
+[[insert: ./versions/v1/examples/example-1-schema.json]]
 ```
 
 :::
@@ -356,7 +356,7 @@ Next, you take the "My Faves" schema, and put it in a Trust Establishment docume
 ::: example Trust Establishment Sentiment using the "My Faves" Topic
 
 ```json
-[[insert: ./examples/example-1.json]]
+[[insert: ./versions/v1/examples/example-1.json]]
 ```
 
 :::
@@ -370,7 +370,7 @@ A common usage of [[ref:Trust Establishment Documents]] is by a [[ref:Verifier]]
 ::: example Trusted Issuers for Credential :::
 
 ```json
-[[insert: ./examples/example-2-schema.json]]
+[[insert: ./versions/v1/examples/example-2-schema.json]]
 ```
 
 :::
@@ -380,7 +380,7 @@ Next, you take the "Trusted Issuers For Credential" schema, and put it in a Trus
 ::: example Trust Establishment using the "Trusted Issuers for Credential" Topic
 
 ```json
-[[insert: ./examples/example-2.json]]
+[[insert: ./versions/v1/examples/example-2.json]]
 ```
 
 :::
@@ -391,7 +391,7 @@ Alice is publishing a list about herself, sharing information that could be used
 
 ::: example
   ```json
-[[insert: ./examples/example-3.json]]
+[[insert: ./versions/v1/examples/example-3.json]]
 ```
 :::
 
@@ -402,7 +402,7 @@ In this example, the government identified by `did:example:government` is author
 
 ::: example
   ```json
-[[insert: ./examples/example-4.json]]
+[[insert: ./versions/v1/examples/example-4.json]]
 ```
 :::
 
@@ -412,7 +412,7 @@ In this example, the author is an employer identified by `did:example:employer-1
 
 ::: example
   ```json
-[[insert: ./examples/example-5.json]]
+[[insert: ./versions/v1/examples/example-5.json]]
 ```
 :::
 
@@ -422,7 +422,7 @@ A piza store, identified by `did:example:round-n-proud` is publishing a list of 
 
 ::: example
   ```json
-[[insert: ./examples/example-6.json]]
+[[insert: ./versions/v1/examples/example-6.json]]
 ```
 :::
 
