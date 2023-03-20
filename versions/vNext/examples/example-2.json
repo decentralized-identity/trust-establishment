@@ -1,0 +1,17 @@
+{
+  "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
+  "author": "did:example:alice",
+  "created": "2010-01-01T19:23:24Z",
+  "validFrom": "2010-01-01T19:23:24Z",
+  "version": "0.0.1",
+  "entries": {
+    "https://example.com/trusted-issuers-for-credential.schema.json": {
+      "did:example:bob": {
+        "credentials": ["example.com/dank-meme.schema.json", "example.com/danker-meme.schema.json"]
+      },
+      "did:example:carol": {
+        "credentials": ["example.com/dankest-meme.schema.json", "example.com/dankest-meme.schema.json.ld"]
+      }
+    }
+  }
+}

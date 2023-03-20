@@ -1,0 +1,14 @@
+{
+  "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
+  "author": "did:example:alice",
+  "created": "2010-01-01T19:23:24Z",
+  "validFrom": "2010-01-01T19:23:24Z",
+  "version": "0.0.1",
+  "entries": {
+    "https://example.com/my-faves.schema.json": {
+      "did:phone:1234567890": {
+        "faves": ["1-888-867-5309", "1-603-413-4124", "1-605-475-6960", "1-605-475-6968", "911"]
+      }
+    }
+  }
+}
