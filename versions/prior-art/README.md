@@ -18,4 +18,6 @@ Trust Over IP has specifically stated that the Trust Registry system is meant to
 Trust Registries are also API-centric, requiring a "phone home" by default and limiting their application to those who are willing and able to keep a service running.
 
 ## Others:
-GlobalID, Trinsic, and Verite have mentioned they have trust establishment systems, but they have not publicly disclosed details. GlobalID and Trinsic appear to be attempting to leverage their code as proprietary competitive advantages.
+GlobalID and Trinsic have mentioned they have trust establishment systems, but they have not publicly disclosed details. GlobalID and Trinsic may be leveraging their code and/or their network as differentiators from other credential networks.
+
+[Verite](https://verite.id/) has a strictly registry-based, centralized mechanism for allowlisting issuers and verifiers, but is an illustrative prototype rather than a production system, and what forms trust establishment takes in production in one or more Verite-based networks are yet to be seen.
