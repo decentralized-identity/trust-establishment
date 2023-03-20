@@ -26,10 +26,9 @@ Trust Establishment 1.0.0
 
 ## Abstract
 
-Trust in the decentralized identity space is a problem that many have tried to solve. This specification aims to take a piece of the problem around [[ref:Trust Establishment]]: a means by which an [[ref:Party]] communicates their assertions for a [[ref:Topic]] about a set of [[ref:Parties]]. [[ref:Trust Establishment]] is intended to be informational, though it can be used to prescribe resulting action. Not all potential usage will be covered in this specification.
+Supporting trust decisions in decentralized identity architectures, particularly open-world architectures, is a problem that many have tried to solve. This specification aims to describe a practical, interoperable building block for supporting multiple different kinds of trust-decision [[ref:Trust Establishment]] solutions. We define here a lightweight trust document: a means by which a [[ref:Party]] communicates their assertions for a [[ref:Topic]] about a set of [[ref:Parties]].
 
-This specification describes only the data model of trust documents and is not opinionated on document integrity, format, publication, or discovery. Because of this, the specification alone cannot ensure interoperability and is recommended for use within one or more multi-layered Interoperability Profile(s) which specify those implementation details.
-
+Not all potential usage will be covered in this specification. This specification describes only the data model of trust documents and is not opinionated on document integrity, format, publication, or discovery. Because of this, the specification alone cannot ensure interoperability and is recommended for use within one or more multi-layered Interoperability Profile(s) which specify those implementation details.
 
 ## Status of This Document
 
@@ -47,7 +46,7 @@ Credential, Assertion, Attestation, etc.
 ~ Refers to the [W3C specification](https://www.w3.org/TR/vc-data-model) of the Verifiable Credentials Data Model.
 
 [[def:Topic, Topics, Trust Topic]]
-~ A [[ref:Schema]]-driven document that gives purpose to a trust document. A topic can be anything: from the tangibly measurable (e.g. success rate of a business process) to the intangible (e.g. how one party feels about another).
+~ A [[ref:Schema]]-defined subject that gives purpose to a trust document. A topic can be anything: from the tangibly measurable (e.g. success rate of a business process) to the intangible (e.g. how one party feels about another).
 
 [[def:Trust Establishment, Trust Establishment Document, Trust Establishment Documents]]
 ~ The process by which a [[ref:Party]] makes trust statements about a given [[ref:Party]] for a given [[ref:Topic]] using Trust Establishment Documents.
@@ -81,15 +80,15 @@ Credential, Assertion, Attestation, etc.
 ~ A schema is a vocabulary for a [[ref:Claim]]. Commonly used schema formats include [[ref:JSON Schema]] or [[ref:JSON Linked Data]] as surfaced through [schema.org](https://schema.org/).
 
 [[def:Credential Type, Credential Types]]
-~ A [[ref:Verifiable Credential]] always has a [_type_ property](https://www.w3.org/TR/vc-data-model/#types) referencing one or more URIs
-which provide information semantic meaning and classification for the data in a credential.
+~ A [[ref:Verifiable Credential]] always has a [_type_ property](https://www.w3.org/TR/vc-data-model/#types), referencing one or more URIs to anchor semantic meaning and classification for the data contained in the credential.
 
 ## Structure of this Document
-This document has two primary sections: In the first we describe the data models for [[ref:Topics]] and [[ref:Trust Establishment Documents]]. In the second, we cover some usage of [[ref: Trust Establishment Documents]].
 
-Examples in this document use the Verifiable Credentials Data Model [[spec:VC-DATA-MODEL]] and the [[spec:DID-CORE]] formats for illustrative purposes only; this specification is intended to support any JSON-serializable [[ref:Claim]] format and cannot alone ensure interoperability.
+This document has three primary sections: In the first, we define the data models for [[ref:Topics]] and [[ref:Trust Establishment Documents]]. In the second, we give some examples of some [[ref: Trust Establishment Documents]] in different verifiable formats. In the third, we offer some light guidance on possible usages.
 
-## Data Model
+Examples in this document use the Verifiable Credentials Data Model [[spec:VC-DATA-MODEL]] and the [[spec:DID-CORE]] formats for illustrative purposes only; this specification is intended to support any JSON-serializable [[ref:Claim]] format but interoperability across proof mechanisms, claim formats, etc. is out-of-scope.
+
+## Data Models
 
 [[ref:Trust Establishment Documents]] are objects that articulate information a [[ref:Party]] publishes in order to share _assertions_ about a set of [[ref:DID]]-identified entities. [[ref:Issuers]], [[ref:Verifiers]], and [[ref:Holders]] may find utility in understanding a [[ref:Party]]'s assertions in making decisions in decentralized web interactions.
 
@@ -141,7 +140,7 @@ Examples in this document use the Verifiable Credentials Data Model [[spec:VC-DA
 
 ### Trust Topic
 
-A topic ****MUST**** be a [[ref:JSON Schema]] document that can be applied to any number of [[ref:Parties]] identified in the `entries` property of a [[ref:Trust Establishment Document]].
+A topic ****MUST**** be encoded as a [[ref:JSON Schema]] document that can be applied to any number of [[ref:Parties]] identified in the `entries` property of a [[ref:Trust Establishment Document]].
 
 
 **Example JSON Object**
@@ -172,7 +171,7 @@ A topic ****MUST**** be a [[ref:JSON Schema]] document that can be applied to an
 ```
 ::: 
 
-## Document Integrity
+## Verifiable Trust Document Examples
 
 [[ref:Trust Establishment Documents]] may fit into any number of embed targets – verifiable wrappers or embedded proofing formats - to enable data integrity. This specification takes no position on which means are suitable to provide integrity of [[ref:Trust Establishment Documents]] or [[ref:Topics]]; the examples it provides should be taken as illustrative rather than normative in regards to those decisions at higher layers.
 
@@ -182,11 +181,9 @@ This specification details only a data model rather than a complete syntax and i
 Interoperability is only possible between two implementations, each of which conform to one or more Interoperability Profile(s) which fully specify the implementation details of document integrity, publication, and discovery supported for the other to target. Conformance to this low-level specification does not guarantee compatibility across implementations; instead, these higher-level Interoperability Profile(s) must be targeted.
 :::
 
-### Verifiable Credential
+### Trust Document as a Verifiable Credential proofed by Data Integrity
 
-**Linked Data Proof Verifiable Credential Trust Establishment Document**
-
-::: example Linked Data Proof Verifiable Credential Trust Establishment Document
+::: example Data Integrity Proof VC Containing a Trust Document
 
 ```json
 {
@@ -231,11 +228,9 @@ Interoperability is only possible between two implementations, each of which con
 :::
 
 
-### JSON Web Token (JWT)
+### Trust Document as a JSON Web Token (JWT)-Encoded Verifiable Credential
 
-**JWT-VC Verifiable Credential Trust Establishment Document**
-
-::: example JWT-VC Verifiable Credential Trust Establishment Document - Header
+::: example JWT-VC Containing a Trust Document - Header Segment
 
 ```json
 {
@@ -247,7 +242,7 @@ Interoperability is only possible between two implementations, each of which con
 
 :::
 
-::: example JWT-VC Verifiable Credential Trust Establishment Document - Body
+::: example JWT-VC Verifiable Credential Trust Establishment Document - Payload Segment
 
 ```json
 {
@@ -303,17 +298,17 @@ Interoperability is only possible between two implementations, each of which con
 :::
 
 ::: note
-The third component of the JWT, the signature in JWS form is not shown. You can imagine it being a "third" component of the JWT above.
+The third component of the JWT, the signature in JWS form, is not shown, as the example is given with payload properties given in OIDC-compatible, rather than VC-conformant keys and values; this is sometimes called the "intermediate" or "unwrapped" form of a VC-JWT. In the process of proofing, it would be formatted as a classic JWT, with header object, payload object, and JWS proof object base64-encoded and concatenated with "."s.
 :::
 
 ## Publication & Discovery
 
 
-While specific recommendations for how to host, publish, and discover Trust Establishment documents is out of scope of this specification we can raise a number of points for consideration for its users.
+While specific recommendations for how to host, publish, and discover Trust Establishment documents is out of scope of this specification, we can raise a number of points for consideration for its users.
 
-The publication of the JSON-based documents defined in this specification is a common activity users of the specification will need to engage in for their expressions of trust and sentiment to be discovered and digested by other parties. There are a number of ways to do this, but they should account for the following core abilities:
+The publication of the JSON-based documents defined in this specification is a basic activity required for these expressions of trust and sentiment to be discovered and digested by counterparties, witnesses, and/or aggregators. There are a number of ways to do this, but they should consider the following core capabilities:
 
-1. Enable [[ref:Trust Establishment]] documents to be located via crawling a known set of DIDs (via [Service Endpoints](https://www.w3.org/TR/did-core/#services)) or some other common routing mechanisms.
+1. Enable [[ref:Trust Establishment]] documents to be located via crawling a known set of endpoints or some other common routing mechanisms; DIDs with [Service Endpoints](https://www.w3.org/TR/did-core/#services) offer one abstraction for layering these and integrating them into discovery processes.
 2. Enable querying for all or some subset of [[ref: Trust Establishment]] documents from a target entity via common DID-based data query/interaction protocols.
 
 There may be different motivations for interacting with [[ref:Trust Establishment]] documents. Across those motivations there are a common set of questions one may ask themselves before publishing, including:
@@ -321,7 +316,7 @@ There may be different motivations for interacting with [[ref:Trust Establishmen
 - Who are the intended consumers of this document, and how might they become aware of it?
 - Is this document going to be updated? If so, how are updates shared? How may consumers of older versions become aware that there is a more recent version?
 - Is hosting this document with a single party a risk: to availablility, privacy erosion, or censorship in some manner?
-- If I intend for this document to be replicated, how do I do that? Is there a way to incentivize other parties to replicate my documents?
+- If I intend for this document to be replicated, how do I do that? Is there a way to incentivize other parties to index or replicate my documents?
 
 ## Appendix
 
@@ -361,11 +356,11 @@ Next, you take the "My Faves" schema, and put it in a Trust Establishment docume
 
 :::
 
-You may imagine your carrier similarly using the "My Faves" schema to enumerate favs for all customers, each a separate entity within the [[ref:Trust Establishment Document]].
+You may imagine your carrier similarly using the "My Faves" schema to build a graph of the five favs for all its participating customers, each a separate entity within the [[ref:Trust Establishment Document]].
 
 **Example 2 – Trusted Issuers**
 
-A common usage of [[ref:Trust Establishment Documents]] is by a [[ref:Verifier]] wishing to provide information on which [[ref:Credentials]] they accept from which [[ref:Issuers]]. Using [[ref:Verifiable Credentials]] we know that a given Credential may have a signle schema, but also may reference multiple schemas or `type` documents for the same Credential. Using a "Trusted Issuers for Credential" topic, we can fulfill this use case.
+A common usage of [[ref:Trust Establishment Documents]] is by a [[ref:Verifier]] wishing to provide information on which [[ref:Credentials]] they accept from which [[ref:Issuers]]. Using [[ref:Verifiable Credentials]] we know that a given Credential may have a single schema, but may also reference multiple schemas or `type` definitions for the same Credential. Using a "Trusted Issuers for Credential" topic, we can fulfill this use case.
 
 ::: example Trusted Issuers for Credential :::
 
@@ -398,7 +393,7 @@ Alice is publishing a list about herself, sharing information that could be used
 
 **Example 4 - Government Flight Regulations**
 
-In this example, the government identified by `did:example:government` is authoring a document showing for which airlines (the given entities) the qualifications needed for each of their pilots: information about a requisite flight school and medical report.
+In this example, the government identified by `did:example:government` is authoring a document showing the qualifications needed that each airline (the given entities) will require of each of their pilots: information about a requisite flight school and medical report.
 
 ::: example
   ```json
@@ -418,7 +413,7 @@ In this example, the author is an employer identified by `did:example:employer-1
 
 **Example 6 - Pizza Store**
 
-A piza store, identified by `did:example:round-n-proud` is publishing a list of their chosen vendors, including which products they are willing to purchase for each vendor. This is useful for the vendors, and fans of _Round n' Proud_ everywhere that want to try to re-create the pizza at home.
+A pizza store, identified by `did:example:round-n-proud` is publishing a list of their chosen vendors, including which products they are willing to purchase for each vendor. This is useful for the vendors, and fans of _Round n' Proud_ everywhere that want to try to re-create the pizza at home.
 
 ::: example
   ```json
