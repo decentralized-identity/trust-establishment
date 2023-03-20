@@ -198,21 +198,21 @@ Interoperability is only possible between two implementations, each of which con
   "credentialSubject": {
     "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
     "trustEstablishment": { 
-	  "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
-	  "author": "did:example:alice",
-	  "created": "2010-01-01T19:23:24Z",
-	  "version": "0.0.3",
-	  "topic": "https://example.com/trusted-supplier.schema.json",
-	  "entries": {
-	    "did:example:bob": {
-	      "on_time_percentage": 92,
-	      "goods": ["applewood", "hotel buffet style", "thick cut"]
-	    },
-	    "did:example:carol": {
-	      "on_time_percentage": 74,
-	      "goods": ["oinkys", "porkys", "wilburs"]
-	    }
-	  }
+      "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
+      "author": "did:example:alice",
+      "created": "2010-01-01T19:23:24Z",
+      "version": "0.0.3",
+      "topic": "https://example.com/trusted-supplier.schema.json",
+      "entries": {
+        "did:example:bob": {
+          "on_time_percentage": 92,
+          "goods": ["applewood", "hotel buffet style", "thick cut"]
+        },
+        "did:example:carol": {
+          "on_time_percentage": 74,
+          "goods": ["oinkys", "porkys", "wilburs"]
+        }
+      }
     }
   },
   "proof": {
