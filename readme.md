@@ -5,12 +5,12 @@ Trust Establishment is a [work item](https://github.com/decentralized-identity/c
 
 ## Overview
 
-Trust in the decentralized space is a wide problem that many have tried to solve. In this work item we aim to take a piece of the problem around trust establishment. The following goals are included in the scope of our work:
+Trust in the decentralized space is a wide problem that many have tried to solve. In this work item we aim to take a piece of the problem around trust establishment. The following items are included in the scope of our work:
 
 - Standardize method for enumerating properties of trust, including expressions of trust beyond binary decisions.
 - Standardize method providing foundations of credential issuer and verifier trust.
 
-The above overall goals are served by the following details:
+The above items are served by the following goals:
 
 - Support offline and near-offline evaluations via cacheable assets.
 - Avoid leaking information about trust evaluations to parties other than the one performing the evalution.
