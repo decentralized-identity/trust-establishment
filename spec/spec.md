@@ -328,7 +328,7 @@ There may be different motivations for interacting with [[ref:Trust Establishmen
 
 The [[ref:Trust Establishment]] specification adopts and defines the following [[ref:JSON Schema]] data format and processing variant, which implementers ****MUST**** support for evaluation of the portions of the specification that call for [[ref:JSON Schema]] validation: https://json-schema.org/draft/2020-12/json-schema-core.html
 
-:::
+::: example
 ```json
 [[insert: ./versions/vNext/schemas/schema.json]]
 ```
@@ -389,7 +389,7 @@ Next, you take the "Trusted Issuers For Credential" schema, and put it in a Trus
 Alice is publishing a list about herself, sharing information that could be used in interactions with her.
 
 ::: example
-  ```json
+```json
 [[insert: ./versions/vNext/examples/example-3.json]]
 ```
 :::
@@ -400,7 +400,7 @@ Alice is publishing a list about herself, sharing information that could be used
 In this example, the government identified by `did:example:government` is authoring a document showing the qualifications needed that each airline (the given entities) will require of each of their pilots: information about a requisite flight school and medical report.
 
 ::: example
-  ```json
+```json
 [[insert: ./versions/vNext/examples/example-4.json]]
 ```
 :::
@@ -410,7 +410,7 @@ In this example, the government identified by `did:example:government` is author
 In this example, the author is an employer identified by `did:example:employer-1` who is listing which degrees they are willing to accept for applicants from a set of universities.
 
 ::: example
-  ```json
+```json
 [[insert: ./versions/vNext/examples/example-5.json]]
 ```
 :::
@@ -420,7 +420,7 @@ In this example, the author is an employer identified by `did:example:employer-1
 A pizza store, identified by `did:example:round-n-proud` is publishing a list of their chosen vendors, including which products they are willing to purchase for each vendor. This is useful for the vendors, and fans of _Round n' Proud_ everywhere that want to try to re-create the pizza at home.
 
 ::: example
-  ```json
+```json
 [[insert: ./versions/vNext/examples/example-6.json]]
 ```
 :::
