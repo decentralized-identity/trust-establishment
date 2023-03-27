@@ -210,11 +210,11 @@ Interoperability is only possible between two implementations, each of which con
         "https://example.com/trusted-supplier.schema.json": {
           "did:example:bob": {
             "on_time_percentage": 92,
-            "goods": ["applewood", "hotel buffet style", "thick cut"]
+            "goods": ["basmati", "jasmine", "sushi"]
           },
           "did:example:carol": {
             "on_time_percentage": 74,
-            "goods": ["oinkys", "porkys", "wilburs"]
+            "goods": ["short-grain", "long-grain", "extra glutinous"]
           }
         }
       }
