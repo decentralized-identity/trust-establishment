@@ -206,15 +206,16 @@ Interoperability is only possible between two implementations, each of which con
       "author": "did:example:alice",
       "created": "2010-01-01T19:23:24Z",
       "version": "0.0.3",
-      "topic": "https://example.com/trusted-supplier.schema.json",
       "entries": {
-        "did:example:bob": {
-          "on_time_percentage": 92,
-          "goods": ["applewood", "hotel buffet style", "thick cut"]
-        },
-        "did:example:carol": {
-          "on_time_percentage": 74,
-          "goods": ["oinkys", "porkys", "wilburs"]
+        "https://example.com/trusted-supplier.schema.json": {
+          "did:example:bob": {
+            "on_time_percentage": 92,
+            "goods": ["applewood", "hotel buffet style", "thick cut"]
+          },
+          "did:example:carol": {
+            "on_time_percentage": 74,
+            "goods": ["oinkys", "porkys", "wilburs"]
+          }
         }
       }
     }
@@ -279,17 +280,17 @@ Interoperability is only possible between two implementations, each of which con
             "did:example:bob": {
               "on_time_percentage": 92,
               "goods": [
-                "applewood",
-                "hotel buffet style",
-                "thick cut"
+                "basmati",
+                "jasmine",
+                "sushi"
               ]
             },
             "did:example:carol": {
               "on_time_percentage": 74,
               "goods": [
-                "oinkys",
-                "porkys",
-                "wilburs"
+                "long-grain",
+                "short-grain",
+                "extra glutinous"
               ]
             }
           }
