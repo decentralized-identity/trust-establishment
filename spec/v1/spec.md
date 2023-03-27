@@ -118,14 +118,14 @@ Examples in this document use the Verifiable Credentials Data Model [[spec:VC-DA
   "created": "2022-04-20T04:20:00Z",
   "version": "0.0.3",
   "entries": {
-    "https://example.com/trusted-supplier.schema.json": {
+    "https://example.com/trusted-rice-supplier.schema.json": {
       "did:example:bob": {
         "on_time_percentage": 92,
-        "goods": ["applewood", "hotel buffet style", "thick cut"]
+        "goods": ["basmati", "jasmine", "sushi"]
       },
       "did:example:carol": {
         "on_time_percentage": 74,
-        "goods": ["oinkys", "porkys", "wilburs"]
+        "goods": ["long-grain", "short-grain", "extra glutinous"]
       }
     },
     "https://example.com/other.schema.json":{
