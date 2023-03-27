@@ -8,14 +8,14 @@
   "entries": {
     "https://example.com/trusted-bachelors-degrees.schema.json": {
       "did:example:university-1": {
-        "fields_of_study": ["Aerospace Engineering", "Scandanavian Literature", "Australian Sign Language"]
+        "fields_of_study": ["Aerospace Engineering", "Scandinavian Literature", "Australian Sign Language"]
       },
-      "did:example:univeristy-2": {
+      "did:example:university-2": {
         "fields_of_study": ["Philosophy", "Computer Science", "Mechanical Engineering"]
       }
     },
     "https://example.com/trusted-masters-degrees.schema.json":{
-      "did:example:univeristy-1": {
+      "did:example:university-1": {
         "fields_of_study": ["Art History", "Philosophy", "Computer Science"]
       },
       "did:example:university-3": {

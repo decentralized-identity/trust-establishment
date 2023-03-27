@@ -1,14 +1,13 @@
-Trust Establishment 1.0.x
+Trust Establishment 1.0.0
 ==================
 
-**Specification Status:** Editor's Draft
+**Specification Status:** Working Group Draft
 
 **Latest Draft:**
   [identity.foundation/trust-establishment](https://identity.foundation/trust-establishment)
 
 **Stable Draft: v1.0.0**
   [identity.foundation/trust-establishment/spec/v1](https://identity.foundation/trust-establishment/spec/v1)
-
 
 <!-- -->
 **Editors:**
@@ -119,7 +118,7 @@ Examples in this document use the Verifiable Credentials Data Model [[spec:VC-DA
   "created": "2022-04-20T04:20:00Z",
   "version": "0.0.3",
   "entries": {
-    "https://example.com/trusted-supplier.schema.json": {
+    "https://example.com/trusted-rice-supplier.schema.json": {
       "did:example:bob": {
         "on_time_percentage": 92,
         "goods": ["basmati", "jasmine", "sushi"]
@@ -214,7 +213,7 @@ Interoperability is only possible between two implementations, each of which con
           },
           "did:example:carol": {
             "on_time_percentage": 74,
-            "goods": ["short-grain", "long-grain", "extra glutinous"]
+            "goods": ["long-grain", "short-grain", "extra glutinous"]
           }
         }
       }
@@ -291,7 +290,6 @@ Interoperability is only possible between two implementations, each of which con
                 "long-grain",
                 "short-grain",
                 "extra glutinous"
-              ]
             }
           }
         }
@@ -331,7 +329,7 @@ The [[ref:Trust Establishment]] specification adopts and defines the following [
 
 ::: example
 ```json
-[[insert: ./versions/vNext/schemas/schema.json]]
+[[insert: ./versions/v1/schemas/schema.json]]
 ```
 :::
 
@@ -346,7 +344,7 @@ As an example, we think of "My Faves". The year is 2007 and your pink-colored mo
 ::: example Sentiment of "My Faves" :::
 
 ```json
-[[insert: ./versions/vNext/examples/example-1-schema.json]]
+[[insert: ./versions/v1/examples/example-1-schema.json]]
 ```
 
 :::
@@ -356,7 +354,7 @@ Next, you take the "My Faves" schema, and put it in a Trust Establishment docume
 ::: example Trust Establishment Sentiment using the "My Faves" Topic
 
 ```json
-[[insert: ./versions/vNext/examples/example-1.json]]
+[[insert: ./versions/v1/examples/example-1.json]]
 ```
 
 :::
@@ -370,7 +368,7 @@ A common usage of [[ref:Trust Establishment Documents]] is by a [[ref:Verifier]]
 ::: example Trusted Issuers for Credential :::
 
 ```json
-[[insert: ./versions/vNext/examples/example-2-schema.json]]
+[[insert: ./versions/v1/examples/example-2-schema.json]]
 ```
 
 :::
@@ -380,7 +378,7 @@ Next, you take the "Trusted Issuers For Credential" schema, and put it in a Trus
 ::: example Trust Establishment using the "Trusted Issuers for Credential" Topic
 
 ```json
-[[insert: ./versions/vNext/examples/example-2.json]]
+[[insert: ./versions/v1/examples/example-2.json]]
 ```
 
 :::
@@ -391,7 +389,7 @@ Alice is publishing a list about herself, sharing information that could be used
 
 ::: example
 ```json
-[[insert: ./versions/vNext/examples/example-3.json]]
+[[insert: ./versions/v1/examples/example-3.json]]
 ```
 :::
 
@@ -402,7 +400,7 @@ In this example, the government identified by `did:example:government` is author
 
 ::: example
 ```json
-[[insert: ./versions/vNext/examples/example-4.json]]
+[[insert: ./versions/v1/examples/example-4.json]]
 ```
 :::
 
@@ -412,7 +410,7 @@ In this example, the author is an employer identified by `did:example:employer-1
 
 ::: example
 ```json
-[[insert: ./versions/vNext/examples/example-5.json]]
+[[insert: ./versions/v1/examples/example-5.json]]
 ```
 :::
 
@@ -422,7 +420,7 @@ A pizza store, identified by `did:example:round-n-proud` is publishing a list of
 
 ::: example
 ```json
-[[insert: ./versions/vNext/examples/example-6.json]]
+[[insert: ./versions/v1/examples/example-6.json]]
 ```
 :::
 

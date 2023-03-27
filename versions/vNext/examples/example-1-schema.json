@@ -1,0 +1,19 @@
+{
+  "$id": "https://example.com/my-faves.schema.json",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "title": "My Faves",
+  "type": "object",
+  "properties": {
+    "faves": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"
+      },
+      "minItems": 1,
+      "maxItems": 5
+    }
+  },
+  "required": ["faves"],
+  "additionalProperties": false
+}

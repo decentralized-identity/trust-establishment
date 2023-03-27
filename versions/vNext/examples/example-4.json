@@ -1,0 +1,51 @@
+{
+  "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
+  "author": "did:example:government",
+  "created": "2010-01-01T19:23:24Z",
+  "validFrom": "2010-01-01T19:23:24Z",
+  "validUntil": "2020-01-01T19:23:24Z",
+  "version": 5,
+  "entries": {
+    "https://example.com/trusted-flight-schools.schema.json": {
+      "did:example:airline-1": {
+        "pass_rate": 88,
+        "names": [
+          "Top Gun Academy",
+          "Jim's Good Enough School"
+        ]
+      },
+      "did:example:airline-2": {
+        "pass_rate": 88,
+        "names": [
+          "Winging It",
+          "Pretty Fly",
+          "Parachutes Not Included"
+        ]
+      }
+    },
+    "https://example.com/medical-reports.schema.json": {
+      "did:example:airline-1": {
+        "state_certification": [
+          "California",
+          "Arizona",
+          "Nevada"
+        ],
+        "institutions": [
+          "99% Germ Free Facility",
+          "Southern California's Finest Seal Hospital"
+        ]
+      },
+      "did:example:airline-2": {
+        "state_certification": [
+        "New York",
+        "Colorado",
+        "Vermont"
+        ],
+        "institutions": [
+          "Swiss Cheese No More",
+          "We Take Your Blood"
+        ]
+      }
+    }
+  }
+}
