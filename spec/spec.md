@@ -36,7 +36,7 @@ Not all potential usage will be covered in this specification. This specificatio
 
 ## Status of This Document
 
-Trust Establishment is a _STRAWMAN_ specification under development within the Decentralized Identity Foundation (DIF). It incorporates requirements and learning from related work of many active industry players into a shared specification that meets the collective needs of the community.
+Trust Establishment is an _Editor's Draft_ specification under development within the Decentralized Identity Foundation (DIF). It incorporates requirements and learning from related work of many active industry players into a shared specification that meets the collective needs of the community.
 
 This specification is regularly updated to reflect relevant changes, and we encourage active engagement on [GitHub](https://github.com/decentralized-identity/trust-establishment/issues) and other mediums (e.g. [DIF Slack](https://difdn.slack.com/archives/C4X50SNUX)).
 
