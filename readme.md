@@ -20,6 +20,22 @@ The above items are served by the following goals:
 
 Thus far, we've come up with [two specs](./spec) to address these questions. It's likely there are more to come.
 
+## Related Work
+
+> Section Last Updated 20 March 2023
+
+There are two other similar efforts undergoing active work
+
+### Trust Registry Task Force (ToIP)
+https://wiki.trustoverip.org/display/HOME/Trust+Registry+Task+Force
+
+We are in active monitoring mode with the ToIP work, with an idea that our work here can serve as the offline ability of their API based approach.
+
+### Verifiable Issuers and Verifiers (CCG)
+https://w3c-ccg.github.io/verifiable-issuers-verifiers/
+
+Early conversations at last IIW indicated no active work. That appears to have changed, and we'll be looking to sync up at this next IIW and other methods.
+
 ## Prior Art
 
 We're not the first ones in the space to attempt to solve this problem! We've included a [Prior Art](./prior-art) that attempts to note related preceeding efforts.
